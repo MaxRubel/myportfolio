@@ -4,6 +4,7 @@
   export let windowScroll;
 
   let containerHeight: number;
+  let containerRef: HTMLElement;
 
   let first = false;
   let second = false;
@@ -22,28 +23,32 @@
 
     time2 = setTimeout(() => {
       second = true;
-    }, 600);
+    }, 800);
 
     time3 = setTimeout(() => {
       third = true;
-    }, 1200);
+    }, 1400);
   });
 
   $: if (windowScroll) handleScroll();
 
   function handleScroll() {
-    if (!containerHeight) return;
+    if (!containerRef) return;
 
-    const startFade = 0;
-    const endFade = containerHeight - containerHeight * 0.25;
+    const windowScroll = window.scrollY;
+    const startFadeOut = 250;
+    const endFadeOut = containerHeight; // Fully faded out by the time we've scrolled the height of the container
 
-    // Ensure scrollY is within our defined range
-    const clampedScrollY = Math.max(startFade, Math.min(scrollY, endFade));
+    if (windowScroll <= startFadeOut) {
+      opacity = 1; // Fully opaque at the top
+    } else if (windowScroll <= endFadeOut) {
+      // Linear fade out
+      opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
+    } else {
+      opacity = 0; // Fully transparent after scrolling past the container height
+    }
 
-    const opacityCalc =
-      1 - (clampedScrollY - startFade) / (endFade - startFade);
-
-    opacity = Math.max(0, Math.min(opacityCalc, 1));
+    opacity = Math.max(0, Math.min(opacity, 1));
   }
 
   onDestroy(() => {
@@ -54,14 +59,18 @@
 </script>
 
 <div class="fade"></div>
-<div class="hero-wrapper" bind:clientHeight={containerHeight}>
+<div
+  class="hero-wrapper roboto-medium"
+  bind:this={containerRef}
+  bind:clientHeight={containerHeight}
+>
   <div class="hero-container" style="opacity: {opacity}">
     <div class="left-box">
       <div class="top-left">
-        <h1 class="hide trans" class:first>Hi,</h1>
-        <h1 class="hide trans" class:second>I'm Max.</h1>
+        <h1 class="hide trans roboto-bold" class:first>Hi,</h1>
+        <h1 class="hide trans roboto-bold" class:second>I'm Max.</h1>
       </div>
-      <div class="top-left" style="margin-top: 1rem;">
+      <div class="top-left" style="margin-top: 2rem;">
         <p class="hide" class:third>
           I'm a music producer in Nashville, Tennessee. Last year, I decided to
           study web development at Nashville Software School where I discovered
@@ -69,8 +78,8 @@
           proud of.
         </p>
       </div>
-      <div style="margin-top: 1rem;" class="hide" class:third>
-        <button class="hero-button">Explore My Work</button>
+      <div style="margin-top: 4rem;" class="hide" class:third>
+        <button class="hero-button roboto-bold">Explore My Work</button>
       </div>
       <div class="mid-left"></div>
     </div>

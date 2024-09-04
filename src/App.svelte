@@ -4,8 +4,9 @@
   import Hero from "./components/Hero.svelte";
   import NavBar from "./components/NavBar.svelte";
   import Transition from "./components/Transition.svelte";
+  import MyWork from "./components/MyWork.svelte";
 
-  let windowScroll = 0;
+  let windowScroll = window.scrollY;
 
   function handleWindowScroll(e: Event) {
     windowScroll = window.scrollY;
@@ -25,4 +26,5 @@
   <Hero {windowScroll} />
   <About {windowScroll} />
   <Transition {windowScroll} />
+  <MyWork {windowScroll} />
 </main>

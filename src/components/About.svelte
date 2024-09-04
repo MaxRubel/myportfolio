@@ -9,59 +9,37 @@
   $: heightdisplay = containerRef?.offsetTop;
 
   $: if (windowScroll) handleScroll();
-  // $: if (windowScroll) handleFadeOut();
 
   function handleScroll() {
-    console.log(containerRef);
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = heightdisplay - heightdisplay * 0.75; // Start fading in 200px before heightdisplay
-    const endFadeIn = heightdisplay; // End fading in 100px after heightdisplay
-    const startFadeOut = heightdisplay; // Start fading out 300px after heightdisplay
-    const endFadeOut = heightdisplay + heightdisplay * 0.75; // End fading out 600px after heightdisplay
+    const startFadeIn = heightdisplay - heightdisplay * 0.75;
+    const endFadeIn = heightdisplay;
+    const startFadeOut = heightdisplay + 300;
+    const endFadeOut = heightdisplay + heightdisplay;
 
     if (windowScroll <= startFadeIn) {
       opacity = 0; // Fully transparent before reaching startFadeIn
     } else if (windowScroll <= endFadeIn) {
-      // Fade in
-      const progress = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
-      opacity = Math.sin((progress * Math.PI) / 2);
+      // Linear fade in
+      opacity = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
     } else if (windowScroll <= startFadeOut) {
       opacity = 1; // Fully opaque between endFadeIn and startFadeOut
     } else if (windowScroll <= endFadeOut) {
-      // Fade out
-      const progress =
-        (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
-      opacity = Math.cos((progress * Math.PI) / 2);
+      // Linear fade out
+      opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
     } else {
       opacity = 0; // Fully transparent after endFadeOut
     }
 
-    // Ensure opacity is between 0 and 1
     opacity = Math.max(0, Math.min(opacity, 1));
-    console.log("opacity: ", opacity);
   }
-
-  // function handleFadeOut() {
-  //   const startFadeOut = heightdisplay + 400; // Scroll position where fading starts
-  //   const endFade = 2000; // Scroll position where fading ends
-
-  //   // Ensure scrollY is within our defined range
-  //   const clampedScrollY = Math.max(startFadeOut, Math.min(scrollY, endFade));
-
-  //   // Calculate the opacity
-  //   const opacityCalc =
-  //     1 - (clampedScrollY - startFadeOut) / (endFade - startFadeOut);
-
-  //   // Ensure opacity is between 0 and 1
-  //   opacity = Math.max(0, Math.min(opacityCalc, 1));
-  // }
 </script>
 
 <!-- <div class="placeholder" class:visible></div> -->
 <div
-  class="about-container"
+  class="about-container roboto-regular"
   bind:this={containerRef}
   style="opacity: {opacity};"
 >

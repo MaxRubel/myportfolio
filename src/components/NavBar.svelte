@@ -1,8 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { hideNavStore } from "../../stores/hideNavStore";
 
   let slideIn = false;
   let yValue = 0;
+  let amHidden;
+
+  $: amHidden = $hideNavStore;
 
   function handleMouseMove(e: MouseEvent) {
     yValue = e.clientY;
@@ -25,7 +29,12 @@
   });
 </script>
 
-<div class="nav-container" style="top: {slideIn ? '0px' : '-63px'}">
+<div
+  class="nav-container"
+  style="top: {slideIn ? '0px' : '-63px'}; display: {amHidden
+    ? 'none'
+    : 'flex'}"
+>
   <div class="left-nav">
     <div>MAX RUBEL</div>
   </div>
@@ -44,21 +53,17 @@
     justify-content: center;
     align-items: center;
     font-size: 16pt;
-    background: rgba(15, 15, 15, 0.5); /* Dark semi-transparent background */
-    backdrop-filter: blur(10px); /* Creates the frosted glass effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari support */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    /* Optional: adds a subtle border */
     border: 1px solid rgba(255, 255, 255, 0.1);
-
-    /* Positioning and sizing (adjust as needed) */
     position: fixed;
     left: 0;
     right: 0;
-    height: 60px; /* Adjust based on your needs */
+    height: 60px;
 
-    /* Ensure content is above the blur */
     z-index: 1000;
     opacity: 1;
     transition: all 4s ease;
