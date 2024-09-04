@@ -21,10 +21,10 @@
   });
 </script>
 
-<main style="height: 100%; min-height: 200vh; ">
+<main>
   <NavBar />
   <Hero {windowScroll} />
-  <About {windowScroll} />
+  <!-- <About {windowScroll} /> -->
   <Transition {windowScroll} />
   <MyWork {windowScroll} />
 </main>

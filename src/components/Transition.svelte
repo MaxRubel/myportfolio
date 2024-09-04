@@ -12,15 +12,14 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = heightdisplay - heightdisplay * 0.75;
+    const startFadeIn = 0;
     const endFadeIn = heightdisplay;
     const startFadeOut = heightdisplay + 5;
-    const endFadeOut = heightdisplay + heightdisplay * 0.2;
+    const endFadeOut = heightdisplay + heightdisplay * 0.5;
 
     if (windowScroll <= startFadeIn) {
       opacityFont = 0; // Fully transparent before reaching startFadeIn
-    } else if (windowScroll <= endFadeIn) {
-      // Linear fade in
+    } else if (windowScroll < endFadeIn) {
       opacityFont = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
     } else if (windowScroll <= startFadeOut) {
       opacityFont = 1; // Fully opaque between endFadeIn and startFadeOut
@@ -81,9 +80,10 @@
   .transition {
     position: sticky;
     top: 0;
+    left: 0px;
     z-index: 3;
     height: 100vh;
-
+    /* width: 100%; */
     background-color: rgb(14, 0, 39);
     color: white;
     display: flex;

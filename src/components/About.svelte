@@ -67,7 +67,7 @@
         continue learning by diving into C++ and lower level programming.
       </p>
       <div style="margin-top: 3rem;">
-        <button class="hero-button">Explore My Work</button>
+        <button class="hero-button">Check Out My Work</button>
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
     z-index: 10;
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    /* width: 100vw; */
     z-index: 2;
     position: sticky;
     top: 0;

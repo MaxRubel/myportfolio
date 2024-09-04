@@ -17,28 +17,34 @@
   <div class="text-container roboto-medium">
     <h1>Zoot</h1>
     <p>
-      Zoot is a clone of a popular video conferencing app. It uses Svelte for
-      the frontend, and a websocket server written in Go as the backend. The
-      server stores each video chat room and a map of the room's clients in
-      memory. When a new user joins the room, they receive the IDs of each user
-      in the room, and the client uses that information to negotiate a Web-RTC
-      connection with each one. There are additional controls to manipulate the
-      camera and audio through browser based apis.
+      Zoot is a multi-room video conferencing app. It uses Svelte for the
+      frontend, and a websocket server written in Go for the backend. The server
+      stores data in memory in the form of maps which hold all of the room's
+      client's websocket connections. When a new user joins the room, they
+      receive the IDs of each user in the room, and the client negotiates a
+      Web-RTC connection in a loop for every user. Zoot also makes use of
+      several browser apis that handle camera and audio streaming.
     </p>
-    <h2>What I Learned:</h2>
-    <p>
-      <li>How to negotiate web-RTC connections</li>
-      <li>How to store and manipulate websocket connections in GO</li>
-      <li>Deploying with Docker!</li>
-    </p>
-    <h2>Skills used:</h2>
-    <div class="skills-container">
-      <button class="skills-button"> Javascript </button>
-      <button class="skills-button"> Svelte </button>
-      <button class="skills-button"> Go </button>
-      <button class="skills-button"> Websockets </button>
-      <button class="skills-button"> Web-RTC </button>
-      <button class="skills-button"> Media Streaming </button>
+    <div class="middle-text">
+      <div class="col1">
+        <h2>What I Learned</h2>
+        <p>
+          <li>How to negotiate web-RTC connections</li>
+          <li>How to store websocket connections in Go</li>
+          <li>Deploying with Docker!</li>
+        </p>
+      </div>
+      <div class="col2">
+        <h2>Skills I Used</h2>
+        <div class="skills-container">
+          <div>Javascript</div>
+          <div>Svelte</div>
+          <div>Go</div>
+          <div>Websockets</div>
+          <div>Web-RTC</div>
+          <div>Streaming Media</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -48,43 +54,63 @@
     flex-direction: column;
   }
 
+  h1 {
+    margin: 1rem 0rem;
+  }
+
+  h2 {
+    margin: 0.5rem 0rem;
+  }
+
   .video-container {
     width: 100%;
     margin-top: 40px;
     margin-bottom: 20px;
   }
 
+  .middle-text {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .col1,
+  .col2 {
+    flex: 0 0 50%;
+    padding: 1em;
+    /* padding-left: 0px; */
+  }
+
+  .col1 {
+    padding-left: 0px;
+  }
+
   .skills-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    flex-direction: column;
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .responsive-video {
     width: 100%;
-    height: auto;
     display: block;
-    max-height: 680px;
+    margin: -1rem 0px;
+    max-height: 450px;
   }
 
-  .skills-button {
-    border-radius: 10px;
-    padding: 0.6em 1.2em;
-    background-color: rgb(0, 55, 92);
-    color: rgb(207, 224, 255);
-    cursor: default;
-    transition: all 0.7s ease;
-    height: 44px;
-    width: auto;
-  }
+  @media (max-width: 670px) {
+    .middle-text {
+      flex-direction: column;
+    }
 
-  .skills-button:hover {
-    background-color: rgb(0, 40, 66);
-  }
+    .col1,
+    .col2 {
+      flex: 1 1 100%;
+      padding-left: 0px;
+    }
 
-  .skills-button:focus,
-  .skills-button:focus-visible {
-    outline: none;
+    .col2 {
+      margin-top: -1.6rem;
+    }
   }
 </style>

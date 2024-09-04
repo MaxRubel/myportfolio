@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import Flower from "../graphics/Flower.svelte";
 
   export let windowScroll;
 
@@ -15,6 +16,7 @@
   let time3: ReturnType<typeof setTimeout>;
 
   let opacity = 1;
+  let blueOpacity = 0;
 
   onMount(() => {
     time1 = setTimeout(() => {
@@ -36,19 +38,23 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeOut = 250;
-    const endFadeOut = containerHeight; // Fully faded out by the time we've scrolled the height of the container
+    const startFadeOut = 10;
+    const endFadeOut = containerHeight - containerHeight * 0.25;
 
     if (windowScroll <= startFadeOut) {
-      opacity = 1; // Fully opaque at the top
+      opacity = 1;
+      blueOpacity = 0;
     } else if (windowScroll <= endFadeOut) {
-      // Linear fade out
+      // Linear fade out for white, fade in for blue
       opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
+      blueOpacity = (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
     } else {
-      opacity = 0; // Fully transparent after scrolling past the container height
+      opacity = 0;
+      blueOpacity = 1;
     }
 
     opacity = Math.max(0, Math.min(opacity, 1));
+    blueOpacity = Math.max(0, Math.min(blueOpacity, 1));
   }
 
   onDestroy(() => {
@@ -58,7 +64,7 @@
   });
 </script>
 
-<div class="fade"></div>
+<div class="fade" style="opacity: {blueOpacity}"></div>
 <div
   class="hero-wrapper roboto-medium"
   bind:this={containerRef}
@@ -71,15 +77,12 @@
         <h1 class="hide trans roboto-bold" class:second>I'm Max.</h1>
       </div>
       <div class="top-left" style="margin-top: 2rem;">
-        <p class="hide" class:third>
-          I'm a music producer in Nashville, Tennessee. Last year, I decided to
-          study web development at Nashville Software School where I discovered
-          my passion for coding. This portfolio represents the work I am most
-          proud of.
+        <p class="hide" style="font-size: 16pt;" class:third>
+          I'm a musician, audio engineer, and aspiring software developer.
         </p>
       </div>
       <div style="margin-top: 4rem;" class="hide" class:third>
-        <button class="hero-button roboto-bold">Explore My Work</button>
+        <button class="hero-button roboto-bold">Checkout My Work</button>
       </div>
       <div class="mid-left"></div>
     </div>
@@ -98,41 +101,48 @@
     margin: 0.5rem 0rem;
     transition: all 3s ease;
   }
+  .hero-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
   .hero-container {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
+    position: relative;
     z-index: 1;
-    position: sticky;
-    top: 0;
-    left: 0;
     background-color: white;
   }
 
   .fade {
-    position: absolute;
-    z-index: 0;
-    top: 1;
-    left: 1;
-    height: 100vh;
-    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgb(0, 204, 255);
+    z-index: 1;
+    width: 100%;
+    pointer-events: none;
   }
-
   .left-box {
     height: 100%;
-    flex: 0 0 55%; /* This sets the width to 40% and prevents growing or shrinking */
+    flex: 0 0 55%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     padding: 19% 10%;
-    box-sizing: border-box; /* This ensures padding is included in the 40% width */
+    box-sizing: border-box;
   }
 
   .right-box {
     height: 100%;
-    background-color: rgb(52, 60, 60);
-    flex: 0 0 45%; /* This sets the width to 60% and prevents growing or shrinking */
+    box-sizing: border-box;
+    flex: 0 0 45%;
   }
 
   .myface {
