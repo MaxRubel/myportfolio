@@ -127,7 +127,9 @@
     background-color: rgb(0, 204, 255);
     z-index: 1;
     width: 100%;
+    height: 100%;
     pointer-events: none;
+    overflow: hidden;
   }
   .left-box {
     height: 100%;

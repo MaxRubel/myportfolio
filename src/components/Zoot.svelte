@@ -1,4 +1,10 @@
-<div class="zoot-container centered">
+<script>
+  import LilBar from "./LilBar.svelte";
+
+  export let added = 0;
+</script>
+
+<div class="zoot-container centered" style="transform: translateX({added}vw)">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -15,7 +21,10 @@
     </div>
   </div>
   <div class="text-container roboto-medium">
-    <h1>Zoot</h1>
+    <div class="title-row">
+      <h1>Zoot</h1>
+      <div class="lilbar-wrapper"><LilBar /></div>
+    </div>
     <p>
       Zoot is a multi-room video conferencing app. It uses Svelte for the
       frontend, and a websocket server written in Go for the backend. The server
@@ -52,6 +61,10 @@
 <style>
   .zoot-container {
     flex-direction: column;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.7s ease;
   }
 
   h1 {
@@ -62,6 +75,19 @@
     margin: 0.5rem 0rem;
   }
 
+  .title-row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .lilbar-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
   .video-container {
     width: 100%;
     margin-top: 40px;
