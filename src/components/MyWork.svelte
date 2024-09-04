@@ -49,10 +49,6 @@
 
     opacity = Math.max(0, Math.min(opacity, 1));
   }
-
-  function handleHover(type: string) {
-    console.log(type);
-  }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -69,75 +65,22 @@
   }}
 >
   <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-  <div class="lil-bar">
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-    <div
-      class="icon"
-      style="left: 20%;"
-      on:mouseover={() => {
-        handleHover("zoot");
-      }}
-    >
-      <Computer />
-    </div>
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-    <div
-      class="icon"
-      style="left: 50%;"
-      on:mouseover={() => {
-        handleHover("plan");
-      }}
-    >
-      <Calendar />
-    </div>
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-      class="icon"
-      style="left: 80%;"
-      on:mouseover={() => {
-        handleHover("paint");
-      }}
-    >
-      <Palette />
-    </div>
-  </div>
+
   <Zoot />
 </div>
 
 <style>
   .portfolio-container {
+    width: 105%;
     position: sticky;
     box-sizing: border-box;
     padding: 80px;
     z-index: 3;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: rgb(14, 0, 39);
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .lil-bar {
-    position: absolute;
-    background-color: white;
-    width: 350px;
-    height: 1px;
-    top: 75px;
-  }
-
-  .icon {
-    cursor: pointer;
-    position: absolute;
-    top: -30px;
-    transform: translateX(-50%);
-    background-color: rgb(14, 0, 39);
-    height: 60px;
-  }
-
-  .icon:hover {
-    color: rgb(238, 189, 253);
   }
 </style>
