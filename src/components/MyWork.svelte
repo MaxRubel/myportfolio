@@ -1,86 +1,91 @@
 <script lang="ts">
-  import { hideNavStore } from "../../stores/hideNavStore";
-  import Calendar from "../graphics/Calendar.svelte";
-  import Computer from "../graphics/Computer.svelte";
-  import Palette from "../graphics/Palette.svelte";
-  import Zoot from "./Zoot.svelte";
-
-  export let windowScroll: number;
+  export let windowScroll;
 
   let containerRef: HTMLElement;
   let containerHeight: number;
-  let opacity = 0;
-  let heightdisplay: number;
 
-  $: if (containerRef) {
-    heightdisplay = containerRef.offsetTop;
+  let opacityBG = 0;
+  let opacityFont = 0;
+  $: heightdisplay = containerRef?.offsetTop;
+
+  function handleScrollFont() {
+    if (!containerRef) return;
+
+    const windowScroll = window.scrollY;
+    const startFadeIn = 0;
+    const endFadeIn = heightdisplay;
+    const startFadeOut = heightdisplay + 5;
+    const endFadeOut = heightdisplay + heightdisplay * 0.5;
+
+    if (windowScroll <= startFadeIn) {
+      opacityFont = 0; // Fully transparent before reaching startFadeIn
+    } else if (windowScroll < endFadeIn) {
+      opacityFont = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
+    } else if (windowScroll <= startFadeOut) {
+      opacityFont = 1; // Fully opaque between endFadeIn and startFadeOut
+    } else if (windowScroll <= endFadeOut) {
+      // Linear fade out
+      opacityFont =
+        1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
+    } else {
+      opacityFont = 0; // Fully transparent after endFadeOut
+    }
+
+    opacityFont = Math.max(0, Math.min(opacityFont, 1));
+  }
+
+  function handleScrollBG() {
+    if (!containerRef) return;
+
+    const windowScroll = window.scrollY;
+    const startFadeIn = heightdisplay - heightdisplay * 0.75;
+    const endFadeIn = heightdisplay - heightdisplay * 0.25;
+    console.log("he", heightdisplay);
+
+    if (windowScroll <= startFadeIn) {
+      opacityBG = 0; // Fully transparent before reaching startFadeIn
+    } else if (windowScroll <= endFadeIn) {
+      // Linear fade in
+      opacityBG = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
+    } else {
+      opacityBG = 1; // Fully opaque after endFadeIn
+    }
+
+    opacityBG = Math.max(0, Math.min(opacityBG, 1));
   }
 
   $: {
-    if (windowScroll >= heightdisplay) {
-      hideNavStore.set(true);
-    } else {
-      hideNavStore.set(false);
+    if (windowScroll) {
+      handleScrollBG();
+      handleScrollFont();
     }
-    handleScroll();
-  }
-
-  function handleScroll() {
-    if (!containerRef) return;
-
-    const startFadeIn = heightdisplay - heightdisplay * 0.75;
-    const endFadeIn = heightdisplay;
-    const startFadeOut = heightdisplay + 300;
-    const endFadeOut = heightdisplay + heightdisplay * 0.75;
-
-    if (windowScroll <= startFadeIn) {
-      opacity = 0;
-    } else if (windowScroll <= endFadeIn) {
-      // Linear fade in
-      opacity = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
-    } else if (windowScroll <= startFadeOut) {
-      opacity = 1;
-    } else if (windowScroll <= endFadeOut) {
-      // Linear fade out
-      opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
-    } else {
-      opacity = 0;
-    }
-
-    opacity = Math.max(0, Math.min(opacity, 1));
   }
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="placeholder"></div>
 <div
-  class="portfolio-container prata-regular"
+  class="transition prata-regular centered"
   bind:this={containerRef}
   bind:clientHeight={containerHeight}
-  style="opacity: {opacity};"
-  on:mouseenter={() => {
-    hideNavStore.set(true);
-  }}
-  on:mouseleave={() => {
-    hideNavStore.set(false);
-  }}
+  style="opacity: {opacityBG};"
 >
-  <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-
-  <Zoot />
+  <div
+    style="font-size: 72pt; opacity:{opacityFont}; background-color: transparent"
+  >
+    My Work
+  </div>
 </div>
 
 <style>
-  .portfolio-container {
-    width: 105%;
+  .transition {
     position: sticky;
-    box-sizing: border-box;
-    padding: 80px;
+    top: 0;
+    left: 0px;
     z-index: 3;
-    /* height: 100vh; */
+    height: 100vh;
+    /* width: 100%; */
     background-color: rgb(14, 0, 39);
     color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 </style>

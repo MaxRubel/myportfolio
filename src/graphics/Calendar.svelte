@@ -1,17 +1,17 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="59"
+  width="54"
   height="59"
   fill="currentColor"
   viewBox="0 0 48 48"
 >
-  <!-- Diamond shape -->
-  <path
+  Diamond shape
+  <!-- <path
     d="M24 4 L44 24 L24 44 L4 24 Z"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-  />
+    stroke-width="1"
+  /> -->
 
   <!-- Calendar icon (perfectly centered) -->
   <g transform="translate(16, 16)">
