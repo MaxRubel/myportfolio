@@ -1,36 +1,46 @@
 <script lang="ts">
-  import { hideNavStore } from "../../../stores/hideNavStore";
-  import { projectViewing } from "../../../stores/ProjectViewingStore";
+  import { onMount } from "svelte";
   import PlanChad from "./PlanChad.svelte";
   import Zoot from "./Zoot.svelte";
 
   export let windowScroll: number;
 
-  let containerRef: HTMLElement;
-  let containerHeight: number;
+  let position = 0;
   let opacity = 0;
+  let containerRef: HTMLElement;
   let heightdisplay: number;
-  let viewing: string;
-
-  $: viewing = $projectViewing;
+  let isResizing = false;
+  let resizeTimeout: any;
 
   $: if (containerRef) {
     heightdisplay = containerRef.offsetTop;
   }
 
-  $: {
-    if (windowScroll >= heightdisplay) {
-      hideNavStore.set(true);
-    } else {
-      hideNavStore.set(false);
-    }
-    handleScroll();
+  $: if (containerRef) {
+    heightdisplay = containerRef.offsetTop;
   }
+
+  onMount(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
+  function handleResize() {
+    isResizing = true;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      isResizing = false;
+    }, 150) as unknown as number;
+  }
+
+  $: if (windowScroll) handleScroll();
 
   function handleScroll() {
     if (!containerRef) return;
 
-    const startFadeIn = heightdisplay - heightdisplay * 0.3;
+    const startFadeIn = heightdisplay - heightdisplay * 0.5; //larger decimal is sooner
     const endFadeIn = heightdisplay;
     const startFadeOut = heightdisplay + 300;
     const endFadeOut = heightdisplay + heightdisplay * 0.75;
@@ -51,46 +61,88 @@
 
     opacity = Math.max(0, Math.min(opacity, 1));
   }
+
+  function moveLeft() {
+    if (position === -200) return;
+    position -= 100;
+  }
+
+  function moveRight() {
+    if (position === 0) return;
+    position += 100;
+  }
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-  class="portfolio-container"
-  id="portfolio-container-anchor"
-  bind:this={containerRef}
-  bind:clientHeight={containerHeight}
-  style="opacity: {opacity};"
-  on:mouseenter={() => {
-    hideNavStore.set(true);
-  }}
-  on:mouseleave={() => {
-    hideNavStore.set(false);
-  }}
->
-  <div class="project-container">
+<div class="port" bind:this={containerRef} id="portfolio-container-anchor">
+  <div
+    class="carousel"
+    class:no-transition={isResizing}
+    style="transform: translateX({position}vw); 
+    opacity: {opacity}"
+  >
     <Zoot />
     <PlanChad />
   </div>
+  <button class="left check hover" on:click={moveRight}>L</button>
+  <button class="right check hover" on:click={moveLeft}>R</button>
 </div>
 
 <style>
-  .portfolio-container {
-    width: 100%;
-    height: 100%;
-    position: sticky;
-    box-sizing: border-box;
-    z-index: 5;
-    background-color: rgb(14, 0, 39);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .port {
+    position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    padding: 0;
+    z-index: 5;
+    box-sizing: border-box;
   }
 
-  .portfolio-container {
+  .carousel {
+    display: flex;
+    width: 200vw;
     height: 100%;
-    position: relative;
+    transition: transform 1s ease;
+  }
+
+  .no-transition {
+    transition: none !important;
+  }
+
+  .left,
+  .right {
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background-color: black;
+    color: white;
+    height: 70px;
+    width: 2rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    transition: all 0.3 ease;
+  }
+
+  .left {
+    left: 1em;
+  }
+
+  .right {
+    right: 1em;
+  }
+
+  .check {
+    background-color: rgba(17, 23, 31, 0.755);
+    color: white;
+    transition: all 0.3s ease;
+    /* border: 1px solid rgb(4, 51, 111); */
+  }
+
+  .hover:hover {
+    background-color: rgb(10, 35, 57);
   }
 </style>

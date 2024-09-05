@@ -61,7 +61,7 @@
   function scrollToPortfolio() {
     const element = document.getElementById("portfolio-container-anchor");
     if (!element) return;
-    scrollToElement(element, 2000);
+    scrollToElement(element, 3000);
   }
 
   function handleScroll() {
