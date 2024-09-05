@@ -1,16 +1,8 @@
-<script>
-  import {
-    projectViewing,
-    addedStore,
-  } from "../../../stores/ProjectViewingStore";
-  import PortfolioBar from "../portfolio/PortfolioBar.svelte";
+<script lang="ts">
+  import { projectViewing } from "../../../stores/ProjectViewingStore";
 </script>
 
-<div
-  class="zoot-container"
-  style="transform: translateX({$addedStore -
-    100}vw); opacity: {$projectViewing === 'ZOOT' ? '1' : '0'}"
->
+<div class="zoot-container">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -27,7 +19,6 @@
     </div>
   </div>
   <div class="text-container roboto-medium">
-    <PortfolioBar />
     <div class="title-row">
       <div><h1>ZOOT</h1></div>
       <div>
@@ -52,46 +43,46 @@
     <div class="middle-text">
       <div class="col1">
         <h2>What I Learned</h2>
-        <p>
+        <ul>
           <li>How to negotiate web-RTC connections</li>
           <li>How to store websocket connections in Go</li>
           <li>Deploying with Docker!</li>
-        </p>
+        </ul>
       </div>
       <div class="col2">
         <h2>Skills I Used</h2>
-        <div class="skills-container">
+        <ul class="skills-container">
           <li>Javascript</li>
           <li>Svelte</li>
           <li>Go</li>
           <li>Websockets</li>
           <li>Web-RTC</li>
           <li>Streaming Media</li>
-        </div>
+        </ul>
       </div>
-    </div>
-    <div class="middle-text">
-      <div class="col1"></div>
     </div>
   </div>
 </div>
 
 <style>
   .zoot-container {
-    flex-direction: column;
-    top: 0;
-    width: 100%;
+    flex: 1;
+    width: 100vw;
     height: 100%;
-    transition: all 0.7s ease;
-    padding: 1rem 3em;
+    color: white;
+    box-sizing: border-box;
+  }
+
+  .text-container {
+    padding: 0rem 4rem;
   }
 
   h1 {
-    margin: 1rem 0rem;
+    margin: 1rem 0;
   }
 
   h2 {
-    margin: 0.5rem 0rem;
+    margin: 0.5rem 0;
   }
 
   .title-row {
@@ -104,7 +95,6 @@
 
   .video-container {
     width: 100%;
-    margin-top: 40px;
     margin-bottom: 20px;
   }
 
@@ -117,11 +107,10 @@
   .col2 {
     flex: 0 0 50%;
     padding: 1em;
-    /* padding-left: 0px; */
   }
 
   .col1 {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .skills-container {
@@ -141,20 +130,9 @@
 
   .responsive-video {
     width: 100%;
-    margin: -1rem 0px;
-    /* max-height: 500px; */
+    margin: -1rem 0;
     transform-origin: center center;
     object-fit: fill;
-    /* object-position: center center; */
-  }
-
-  .check {
-    background-color: rgb(136, 227, 243);
-    color: black;
-    transition: all 0.3s ease;
-  }
-  .check:hover {
-    background-color: rgb(136, 202, 214);
   }
 
   @media (max-width: 670px) {
@@ -165,11 +143,20 @@
     .col1,
     .col2 {
       flex: 1 1 100%;
-      padding-left: 0px;
+      padding-left: 0;
     }
 
     .col2 {
       margin-top: -1.6rem;
     }
+  }
+  .check {
+    background-color: rgb(162, 231, 248);
+    color: black;
+    transition: all 0.3s ease;
+  }
+
+  .check:hover {
+    background-color: rgb(115, 167, 196);
   }
 </style>

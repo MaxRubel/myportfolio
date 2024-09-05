@@ -44,10 +44,6 @@
     const startFadeIn = 200;
     const endFadeIn = heightdisplay - heightdisplay * 0.25;
 
-    console.log("window scroll: ", windowScroll);
-    console.log("heightFromTop: ", heightdisplay);
-    console.log("end of fade: ", endFadeIn);
-
     if (windowScroll <= startFadeIn) {
       opacityBG = 0; // Fully transparent before reaching startFadeIn
     } else if (windowScroll <= endFadeIn) {
@@ -91,7 +87,8 @@
     z-index: 3;
     height: 100vh;
     /* width: 100%; */
-    background-color: rgb(14, 0, 39);
+    /* background-color: rgb(14, 0, 39); */
+    background-color: rgb(17, 23, 31);
     color: white;
     display: flex;
   }

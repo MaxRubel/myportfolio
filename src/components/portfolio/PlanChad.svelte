@@ -3,15 +3,9 @@
     projectViewing,
     addedStore,
   } from "../../../stores/ProjectViewingStore";
-  import PortfolioBar from "./PortfolioBar.svelte";
 </script>
 
-<div
-  class="zoot-container"
-  style="left: {$addedStore}vw; opacity: {$projectViewing === 'planChad'
-    ? '1'
-    : '0'}"
->
+<div class="plan-chad-container">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -28,7 +22,6 @@
     </div>
   </div>
   <div class="text-container roboto-medium">
-    <PortfolioBar />
     <div class="title-row">
       <div><h1>planChad</h1></div>
       <div>
@@ -91,14 +84,11 @@
 </div>
 
 <style>
-  .zoot-container {
-    flex-direction: column;
-    width: 100%;
-    top: 0;
-    height: auto; /* Changed from 100% */
-    transition: all 0.7s ease;
-    position: absolute; /* Changed from absolute */
-    padding: 60px 3em 0; /* Incorporated top: 60px into padding */
+  .plan-chad-container {
+    flex: 1;
+    width: 100vw;
+    height: 100%;
+    color: white;
   }
 
   h1 {
@@ -110,12 +100,13 @@
   }
 
   .check {
-    background-color: rgb(136, 227, 243);
+    background-color: rgb(148, 209, 245);
     color: black;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
   }
+
   .check:hover {
-    background-color: rgb(136, 202, 214);
+    background-color: rgb(115, 167, 196);
   }
 
   .title-row {
@@ -140,7 +131,6 @@
   .col2 {
     flex: 0 0 50%;
     padding: 1em;
-    /* padding-left: 0px; */
   }
 
   .col1 {
@@ -160,12 +150,12 @@
 
   .text-container {
     flex: 1;
+    padding: 0px 4rem;
   }
 
   .responsive-video {
     width: 100%;
     margin: -1rem 0px;
-    /* max-height: 500px; */
     transform-origin: center center;
     object-fit: fill;
     /* object-position: center center; */
