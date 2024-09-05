@@ -2,8 +2,7 @@
   import { onMount } from "svelte";
   import Hero from "./components/Hero.svelte";
   import NavBar from "./components/NavBar.svelte";
-  import Transition from "./components/MyWork.svelte";
-  import Portfolio from "./components/Portfolio.svelte";
+  import Portfolio from "./components/portfolio/Portfolio.svelte";
   import MyWork from "./components/MyWork.svelte";
 
   let windowScroll = window.scrollY;

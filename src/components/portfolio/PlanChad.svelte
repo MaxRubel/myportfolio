@@ -1,15 +1,21 @@
 <script>
-  import LilBar from "./LilBar.svelte";
-
-  export let added;
-  $: console.log(added);
+  import {
+    projectViewing,
+    addedStore,
+  } from "../../../stores/ProjectViewingStore";
+  import PortfolioBar from "./PortfolioBar.svelte";
 </script>
 
-<div class="zoot-container" style="left: {added}vw;">
+<div
+  class="zoot-container"
+  style="left: {$addedStore}vw; opacity: {$projectViewing === 'planChad'
+    ? '1'
+    : '0'}"
+>
   <div class="video-background-layer">
     <div class="video-container">
       <video
-        src="planchadEdit.mp4"
+        src="planChad2.mp4"
         class="responsive-video"
         autoplay
         muted
@@ -22,6 +28,7 @@
     </div>
   </div>
   <div class="text-container roboto-medium">
+    <PortfolioBar />
     <div class="title-row">
       <div><h1>planChad</h1></div>
       <div>
@@ -35,14 +42,15 @@
       </div>
     </div>
     <p>
-      PlanChad is the Chad™ of to-do apps. It is made with React 18 + NextJS 12
-      for the front end, and uses Firebase as both the database and Google
-      auth-provider. My inspiration for this project was how I personally like
-      to visualize planning projects that have a large scope: I like to separate
-      them into phases and assign tasks to each phase. This app is packed with
-      features including two layers of drag and drop, a handmade calendar, the
-      ability to share projects and assign collaborators to tasks, a websocket
-      based chat system made with Firebase, and several custom view options.
+      PlanChad is the Chad™ of to-do apps. It's made with React 18 + NextJS 12
+      for the front-end, and uses Firebase as both the back-end database and
+      Google auth-provider. My inspiration for this project was how I personally
+      like to visualize planning projects that have a large scope: I like to
+      separate them into phases and assign tasks to each phase. This app is
+      packed with features including two layers of drag and drop, a handmade
+      calendar, the ability to share projects and assign collaborators to tasks,
+      a websocket based chat system made with Firebase, and several custom view
+      options.
     </p>
     <p style="margin-top: 2rem;">
       This app served as my front end capstone project for a class I'm finishing
@@ -85,13 +93,12 @@
 <style>
   .zoot-container {
     flex-direction: column;
-    top: 0;
     width: 100%;
-    height: 100%;
+    top: 0;
+    height: auto; /* Changed from 100% */
     transition: all 0.7s ease;
-    position: absolute;
-    top: 60px;
-    padding: 1rem 3em;
+    position: absolute; /* Changed from absolute */
+    padding: 60px 3em 0; /* Incorporated top: 60px into padding */
   }
 
   h1 {
@@ -103,13 +110,12 @@
   }
 
   .check {
-    background-color: rgb(67, 226, 231);
+    background-color: rgb(136, 227, 243);
     color: black;
+    transition: all 0.5s ease;
   }
-
   .check:hover {
-    background-color: rgb(79, 170, 173);
-    transition: all 0.3s ease;
+    background-color: rgb(136, 202, 214);
   }
 
   .title-row {
@@ -122,7 +128,6 @@
 
   .video-container {
     width: 100%;
-    margin-top: 40px;
     margin-bottom: 20px;
   }
 

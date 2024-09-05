@@ -1,10 +1,16 @@
 <script>
-  import LilBar from "./LilBar.svelte";
-
-  export let added;
+  import {
+    projectViewing,
+    addedStore,
+  } from "../../../stores/ProjectViewingStore";
+  import PortfolioBar from "../portfolio/PortfolioBar.svelte";
 </script>
 
-<div class="zoot-container" style="transform: translateX({added - 100}vw)">
+<div
+  class="zoot-container"
+  style="transform: translateX({$addedStore -
+    100}vw); opacity: {$projectViewing === 'ZOOT' ? '1' : '0'}"
+>
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -21,8 +27,18 @@
     </div>
   </div>
   <div class="text-container roboto-medium">
+    <PortfolioBar />
     <div class="title-row">
-      <h1>Zoot</h1>
+      <div><h1>ZOOT</h1></div>
+      <div>
+        <a
+          href="https://zooty.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button class="check">Check out the demo!</button>
+        </a>
+      </div>
     </div>
     <p>
       Zoot is a multi-room video conferencing app. It uses Svelte for the
@@ -45,22 +61,17 @@
       <div class="col2">
         <h2>Skills I Used</h2>
         <div class="skills-container">
-          <div>Javascript</div>
-          <div>Svelte</div>
-          <div>Go</div>
-          <div>Websockets</div>
-          <div>Web-RTC</div>
-          <div>Streaming Media</div>
+          <li>Javascript</li>
+          <li>Svelte</li>
+          <li>Go</li>
+          <li>Websockets</li>
+          <li>Web-RTC</li>
+          <li>Streaming Media</li>
         </div>
       </div>
     </div>
     <div class="middle-text">
-      <div class="col1">
-        <h2>Check it Out:</h2>
-
-        <div style="font-size: 16pt;">Video Walkthrough</div>
-        <div style="font-size: 16pt;">Live Demo</div>
-      </div>
+      <div class="col1"></div>
     </div>
   </div>
 </div>
@@ -86,8 +97,9 @@
   .title-row {
     position: relative;
     display: flex;
-    justify-content: space-between;
     width: 100%;
+    align-items: center;
+    gap: 3rem;
   }
 
   .video-container {
@@ -134,6 +146,15 @@
     transform-origin: center center;
     object-fit: fill;
     /* object-position: center center; */
+  }
+
+  .check {
+    background-color: rgb(136, 227, 243);
+    color: black;
+    transition: all 0.3s ease;
+  }
+  .check:hover {
+    background-color: rgb(136, 202, 214);
   }
 
   @media (max-width: 670px) {

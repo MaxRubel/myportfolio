@@ -1,12 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { hideNavStore } from "../../stores/hideNavStore";
 
   let slideIn = false;
   let yValue = 0;
-  let amHidden;
-
-  $: amHidden = $hideNavStore;
 
   function handleMouseMove(e: MouseEvent) {
     yValue = e.clientY;
@@ -31,9 +27,7 @@
 
 <div
   class="nav-container roboto-thin"
-  style="top: {slideIn ? '0px' : '-63px'}; display: {amHidden
-    ? 'none'
-    : 'flex'};"
+  style="top: {slideIn ? '0px' : '-63px'};"
 >
   <div class="left-nav">
     <div>MAX RUBEL</div>
@@ -61,7 +55,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    height: 2.5em;
+    height: 3em;
 
     z-index: 1000;
     opacity: 1;
