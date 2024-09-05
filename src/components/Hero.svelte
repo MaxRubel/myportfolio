@@ -34,6 +34,36 @@
 
   $: if (windowScroll) handleScroll();
 
+  function scrollToElement(element: HTMLElement, duration: number) {
+    const start = window.scrollY;
+    const target = element.getBoundingClientRect().top + start;
+    let startTime: number | null = null;
+
+    function animation(currentTime: number) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, start, target, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Easing function
+    function ease(t: number, b: number, c: number, d: number) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function scrollToPortfolio() {
+    const element = document.getElementById("portfolio-container-anchor");
+    if (!element) return;
+    scrollToElement(element, 2000);
+  }
+
   function handleScroll() {
     if (!containerRef) return;
 
@@ -82,7 +112,9 @@
         </p>
       </div>
       <div style="margin-top: 4rem;" class="hide" class:third>
-        <button class="hero-button roboto-bold">Checkout My Work</button>
+        <button class="hero-button roboto-bold" on:click={scrollToPortfolio}
+          >Checkout My Work</button
+        >
       </div>
       <div class="mid-left"></div>
     </div>

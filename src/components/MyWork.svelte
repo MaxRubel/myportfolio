@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   export let windowScroll;
 
   let containerRef: HTMLElement;
@@ -38,15 +40,20 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = heightdisplay - heightdisplay * 0.75;
-    const endFadeIn = heightdisplay - heightdisplay;
-    console.log("he", heightdisplay);
+
+    const startFadeIn = 200;
+    const endFadeIn = heightdisplay - heightdisplay * 0.25;
+
+    console.log("window scroll: ", windowScroll);
+    console.log("heightFromTop: ", heightdisplay);
+    console.log("end of fade: ", endFadeIn);
 
     if (windowScroll <= startFadeIn) {
       opacityBG = 0; // Fully transparent before reaching startFadeIn
     } else if (windowScroll <= endFadeIn) {
       // Linear fade in
       opacityBG = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
+      console.log("yes, ", opacityBG);
     } else {
       opacityBG = 1; // Fully opaque after endFadeIn
     }
