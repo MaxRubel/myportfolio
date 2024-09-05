@@ -39,7 +39,7 @@
 
     const windowScroll = window.scrollY;
     const startFadeIn = heightdisplay - heightdisplay * 0.75;
-    const endFadeIn = heightdisplay - heightdisplay * 0.25;
+    const endFadeIn = heightdisplay - heightdisplay;
     console.log("he", heightdisplay);
 
     if (windowScroll <= startFadeIn) {

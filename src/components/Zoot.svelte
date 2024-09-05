@@ -1,10 +1,10 @@
 <script>
   import LilBar from "./LilBar.svelte";
 
-  export let added = 0;
+  export let added;
 </script>
 
-<div class="zoot-container centered" style="transform: translateX({added}vw)">
+<div class="zoot-container" style="transform: translateX({added - 100}vw)">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -23,16 +23,15 @@
   <div class="text-container roboto-medium">
     <div class="title-row">
       <h1>Zoot</h1>
-      <div class="lilbar-wrapper"><LilBar /></div>
     </div>
     <p>
       Zoot is a multi-room video conferencing app. It uses Svelte for the
-      frontend, and a websocket server written in Go for the backend. The server
-      stores data in memory in the form of maps which hold all of the room's
-      client's websocket connections. When a new user joins the room, they
-      receive the IDs of each user in the room, and the client negotiates a
-      Web-RTC connection in a loop for every user. Zoot also makes use of
-      several browser apis that handle camera and audio streaming.
+      front-end, and a websocket server written in Go for the back-end. The
+      server stores data in memory in the form of maps which hold pointers to
+      all of the room member's websocket connections. When a new user joins the
+      room, they receive the IDs of each user in the room, and the client
+      negotiates a Web-RTC connection in a loop for every user. Zoot also makes
+      use of several browser apis that handle camera and audio streaming.
     </p>
     <div class="middle-text">
       <div class="col1">
@@ -55,6 +54,14 @@
         </div>
       </div>
     </div>
+    <div class="middle-text">
+      <div class="col1">
+        <h2>Check it Out:</h2>
+
+        <div style="font-size: 16pt;">Video Walkthrough</div>
+        <div style="font-size: 16pt;">Live Demo</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -65,6 +72,7 @@
     width: 100%;
     height: 100%;
     transition: all 0.7s ease;
+    padding: 1rem 3em;
   }
 
   h1 {
@@ -79,15 +87,9 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
   }
 
-  .lilbar-wrapper {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-  }
   .video-container {
     width: 100%;
     margin-top: 40px;
@@ -117,11 +119,21 @@
     flex-wrap: wrap;
   }
 
+  .video-background-layer {
+    flex-shrink: 0;
+  }
+
+  .text-container {
+    flex: 1;
+  }
+
   .responsive-video {
     width: 100%;
-    display: block;
     margin: -1rem 0px;
-    max-height: 450px;
+    /* max-height: 500px; */
+    transform-origin: center center;
+    object-fit: fill;
+    /* object-position: center center; */
   }
 
   @media (max-width: 670px) {

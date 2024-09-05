@@ -119,7 +119,7 @@
   }
 
   .fade {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -127,7 +127,7 @@
     background-color: rgb(0, 204, 255);
     z-index: 1;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     pointer-events: none;
     overflow: hidden;
   }
