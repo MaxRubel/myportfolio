@@ -2,7 +2,7 @@
   <div class="video-background-layer">
     <div class="video-container">
       <video
-        src="planChad2.mp4"
+        src="painttsdemo.mp4"
         class="responsive-video"
         autoplay
         muted
