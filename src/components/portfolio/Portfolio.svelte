@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import PlanChad from "./PlanChad.svelte";
   import Zoot from "./Zoot.svelte";
+  import GroupDoodles from "./GroupDoodles.svelte";
 
   export let windowScroll: number;
 
@@ -82,6 +83,7 @@
   >
     <Zoot />
     <PlanChad />
+    <GroupDoodles />
   </div>
   <button class="left check hover" on:click={moveRight}>L</button>
   <button class="right check hover" on:click={moveLeft}>R</button>
@@ -98,7 +100,7 @@
 
   .carousel {
     display: flex;
-    width: 200vw;
+    width: 300vw;
     height: 100%;
     transition: transform 1s ease;
   }
