@@ -1,15 +1,8 @@
-<script>
-  import {
-    projectViewing,
-    addedStore,
-  } from "../../../stores/ProjectViewingStore";
-</script>
-
 <div class="plan-chad-container">
   <div class="video-background-layer">
     <div class="video-container">
       <video
-        src="planChad2.mp4"
+        src="planchad3.mp4"
         class="responsive-video"
         autoplay
         muted
@@ -46,7 +39,7 @@
       options.
     </p>
     <p style="margin-top: 2rem;">
-      This app served as my front end capstone project for a class I'm finishing
+      This app served as my front-end capstone project for a class I'm finishing
       at the Nashville Software School, and I learned a lot during its creation.
       For example, in trying to optimize how often I posted to the database, I
       ended up writing a caching system that performs all CRUD actions on the
