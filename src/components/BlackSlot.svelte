@@ -62,53 +62,26 @@
       handleScrollFont();
     }
   }
-
-  let windowInnerHeight = 0;
-  function handleResize() {
-    windowInnerHeight = window.innerHeight;
-  }
-  onMount(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
-
-  $: console.log("height", windowInnerHeight);
 </script>
 
-<svelte:window
-  on:resize={() => {
-    if (containerRef) {
-      containerRef.style.height = `${window.innerHeight}px`;
-    }
-  }}
-/>
 <div
-  class="transition prata-regular centered"
+  class="blank-slot"
+  style="opacity: {opacityBG};"
   bind:this={containerRef}
   bind:clientHeight={containerHeight}
-  style="opacity: {opacityBG}; height: {windowInnerHeight}px"
 >
-  <div
-    style="font-size: 72pt; opacity:{opacityFont}; background-color: transparent"
-  >
-    My Work
-  </div>
+  <div class="prata-regular" style="font-size: 72pt;">hey</div>
 </div>
 
 <style>
-  .transition {
-    position: sticky;
-    top: 0;
-    z-index: 4;
-    /* width: 100%; */
-    background-color: rgb(14, 0, 39);
-    color: white;
-    /* display: flex; */
+  .blank-slot {
+    background-color: aqua;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    z-index: 5;
+    height: 100vh;
+    width: 100vw;
+    /* background-color: rgb(14, 0, 39); */
   }
 </style>

@@ -4,6 +4,8 @@
   import NavBar from "./components/NavBar.svelte";
   import Portfolio from "./components/portfolio/Portfolio.svelte";
   import MyWork from "./components/MyWork.svelte";
+  import Contact from "./components/Contact.svelte";
+  import BlackSlot from "./components/BlackSlot.svelte";
 
   let windowScroll = window.scrollY;
 
@@ -23,7 +25,7 @@
 <main>
   <NavBar />
   <Hero {windowScroll} />
-  <!-- <About {windowScroll} /> -->
   <MyWork {windowScroll} />
   <Portfolio {windowScroll} />
+  <Contact />
 </main>
