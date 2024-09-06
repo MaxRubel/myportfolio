@@ -8,6 +8,36 @@
     yValue = e.clientY;
   }
 
+  function scrollToElement(element: HTMLElement, duration: number) {
+    const start = window.scrollY;
+    const target = element.getBoundingClientRect().top + start;
+    let startTime: number | null = null;
+
+    function animation(currentTime: number) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, start, target, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Easing function
+    function ease(t: number, b: number, c: number, d: number) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function scrollToPortfolio() {
+    const element = document.getElementById("portfolio-container-anchor");
+    if (!element) return;
+    scrollToElement(element, 2000);
+  }
+
   $: {
     if (yValue < 120) {
       slideIn = true;
@@ -33,8 +63,8 @@
     <div>MAX RUBEL</div>
   </div>
   <div class="right-nav roboto-thin" style="font-size: 12pt;">
-    <div>PORTFOLIO</div>
-    <div>CONNECT</div>
+    <button class="none" on:click={scrollToPortfolio}>PORTFOLIO</button>
+    <button class="none">CONNECT</button>
   </div>
 </div>
 
@@ -74,5 +104,16 @@
     justify-content: end;
     gap: 30px;
     padding-right: 3em;
+  }
+
+  .none {
+    color: white;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    padding: 0px;
+  }
+
+  .none:hover {
+    color: rgb(215, 215, 215);
   }
 </style>

@@ -38,6 +38,8 @@
 
   $: if (windowScroll) handleScroll();
 
+  let buttonsVisible = false;
+
   function handleScroll() {
     if (!containerRef) return;
 
@@ -60,22 +62,26 @@
       opacity = 0;
     }
 
-    if (windowScroll >= heightdisplay) {
-      console.log("now");
+    if (windowScroll >= heightdisplay - 300) {
+      buttonsVisible = true;
+    } else {
+      buttonsVisible = false;
     }
 
     opacity = Math.max(0, Math.min(opacity, 1));
   }
 
-  function moveLeft() {
+  function moveRight() {
     if (position === -200) return;
     position -= 100;
   }
 
-  function moveRight() {
+  function moveLeft() {
     if (position === 0) return;
     position += 100;
   }
+
+  $: console.log("visbuttons: ", buttonsVisible);
 </script>
 
 <div class="port" bind:this={containerRef} id="portfolio-container-anchor">
@@ -89,8 +95,10 @@
     <PlanChad />
     <GroupDoodles />
   </div>
-  <button class="left check hover" on:click={moveRight}>L</button>
-  <button class="right check hover" on:click={moveLeft}>R</button>
+  <div class="fixed" style:opacity={buttonsVisible ? 1 : 0}>
+    <button class="left check hover" on:click={moveLeft}>L</button>
+    <button class="right check hover" on:click={moveRight}>R</button>
+  </div>
 </div>
 
 <style>
@@ -113,16 +121,23 @@
     transition: none !important;
   }
 
+  .fixed {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    transition: opacity 1s ease;
+  }
+
   .left,
   .right {
-    position: absolute;
-    top: 30%;
-    transform: translateY(-50%);
     z-index: 1;
     background-color: black;
     color: white;
     height: 70px;
-    width: 2rem;
     border: none;
     cursor: pointer;
     background-color: transparent;
@@ -131,6 +146,7 @@
     align-items: center;
     border: 1px solid white;
     transition: all 0.3 ease;
+    width: 1rem;
   }
 
   .left {

@@ -16,7 +16,7 @@
   </div>
   <div class="text-container roboto-medium">
     <div class="title-row">
-      <div><h1>planChad</h1></div>
+      <div><h1>PlanChad</h1></div>
       <div>
         <a
           href="https://planchad.netlify.app"
@@ -53,24 +53,23 @@
     <div class="middle-text">
       <div class="col1">
         <h2>What I Learned</h2>
-        <p>
-          <li>Basic CRUD with a backend</li>
-          <li>How to use data stores (Zustand)</li>
-          <li>I wrote a calendar!</li>
-          <li>How to optimize React to avoid rerendering</li>
-          <li>Use React Query!</li>
-        </p>
+
+        <li>Full-stack CRUD</li>
+        <li>How to use data stores (Zustand)</li>
+        <li>I wrote a calendar!</li>
+        <li>How to optimize React to avoid rerendering</li>
+        <li>Use React Query!</li>
       </div>
       <div class="col2">
         <h2>Skills I Used</h2>
         <div class="skills-container">
-          <div>Javascript</div>
-          <div>React + NextJS</div>
-          <div>Firebase</div>
-          <div>Zustand Stores</div>
-          <div>Framer-Motion Animation Library</div>
-          <div>Google Auth</div>
-          <div>Caching</div>
+          <li>Javascript</li>
+          <li>React + NextJS</li>
+          <li>Firebase</li>
+          <li>Zustand Stores</li>
+          <li>Framer-Motion Animation Library</li>
+          <li>Google Auth</li>
+          <li>Caching</li>
         </div>
       </div>
     </div>
@@ -91,16 +90,6 @@
 
   h2 {
     margin: 0.5rem 0rem;
-  }
-
-  .check {
-    background-color: rgb(148, 209, 245);
-    color: black;
-    transition: all 0.3s ease;
-  }
-
-  .check:hover {
-    background-color: rgb(115, 167, 196);
   }
 
   .title-row {
@@ -153,6 +142,18 @@
     transform-origin: center center;
     object-fit: fill;
     /* object-position: center center; */
+  }
+
+  .check {
+    background-color: rgb(31, 33, 33);
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid rgb(77, 77, 77);
+    z-index: 10;
+  }
+
+  .check:hover {
+    background-color: rgb(38, 38, 38);
   }
 
   @media (max-width: 670px) {

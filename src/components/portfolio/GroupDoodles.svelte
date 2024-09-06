@@ -16,7 +16,7 @@
   </div>
   <div class="text-container roboto-medium">
     <div class="title-row">
-      <div><h1>Group-Doodles!</h1></div>
+      <div><h1>Group-Doodles</h1></div>
       <div>
         <a
           href="https://planchad.netlify.app"
@@ -28,14 +28,13 @@
       </div>
     </div>
     <p>
-      Group-Doodles is a multiplayer drawing app. It is a simple, white-boarding
-      tool. It uses an HTML canvas element to render brush strokes, and it has
-      moveable textboxes. There is also an undo/redo system.
+      Group-Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
+      element to render brush strokes, and it has moveable textboxes. There is
+      also an undo/redo system, and a system for creating color paletes.
     </p>
     <p style="margin-top: 2rem;">
-      The multiplayer mode allows multiple users to access the same canvas in
-      real time. It uses peer to peer WebRTC connections, and when one user
-      makes a change, it broadcasts that change to every other user in the room.
+      Multiplayer mode allows many users to access the same canvas in real time.
+      It uses peer-to-peer WebRTC connections to handle the sharing of data.
     </p>
     <div class="middle-text">
       <div class="col1">
@@ -44,7 +43,7 @@
           <li>Typescript!</li>
           <li>The HTML Canvas API</li>
           <li>Integrating Google-Auth with Svelte</li>
-          <li>Optimizing/throttling data transmission</li>
+          <li>Optimizing data transmission</li>
         </p>
       </div>
       <div class="col2">
@@ -56,7 +55,7 @@
           <li>Go</li>
           <li>Websockets</li>
           <li>WebRTC</li>
-          <li>JS Libraries: Perfect-Freehand, Iro-Color, Svelte-Slider</li>
+          <li>JS Libraries: Perfect-Freehand, Iro-Color</li>
         </div>
       </div>
     </div>
@@ -78,16 +77,16 @@
   h2 {
     margin: 0.5rem 0rem;
   }
-
   .check {
-    background-color: rgb(148, 209, 245);
-    color: black;
+    background-color: rgb(31, 33, 33);
+    color: white;
     transition: all 0.3s ease;
-    padding: 1rem;
+    border: 1px solid rgb(77, 77, 77);
+    z-index: 10;
   }
 
   .check:hover {
-    background-color: rgb(115, 167, 196);
+    background-color: rgb(38, 38, 38);
   }
 
   .title-row {
