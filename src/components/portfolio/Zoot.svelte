@@ -31,34 +31,33 @@
         </a>
       </div>
     </div>
-    <p>
-      Zoot is a multi-room video conferencing app. It uses Svelte for the
-      front-end, and a websocket server written in Go for the back-end. The
-      server stores data in memory in the form of maps which hold pointers to
-      all of the room member's websocket connections. When a new user joins the
-      room, they receive the IDs of each user in the room, and the client
-      negotiates a Web-RTC connection in a loop for every user. Zoot also makes
-      use of several browser apis that handle camera and audio streaming.
+    <p>Zoot is a multi-room video conferencing app.</p>
+    <p style="margin-top: 2rem;">
+      It uses Svelte for the front-end, and a Go websocket server for the
+      back-end. The server stores pointers to all of the active users' websocket
+      connections. When a new user joins the room, they negotiate a WebRTC
+      connection with each other user via these pointers. Zoot also uses several
+      browser APIs that handle camera and audio streaming.
     </p>
     <div class="middle-text">
       <div class="col1">
         <h2>What I Learned</h2>
-        <ul>
-          <li>How to negotiate web-RTC connections</li>
+        <p>
+          <li>How to negotiate WebRTC connections</li>
           <li>How to store websocket connections in Go</li>
           <li>Deploying with Docker!</li>
-        </ul>
+        </p>
       </div>
       <div class="col2">
         <h2>Skills I Used</h2>
-        <ul class="skills-container">
+        <p class="skills-container">
           <li>Javascript</li>
           <li>Svelte</li>
           <li>Go</li>
           <li>Websockets</li>
-          <li>Web-RTC</li>
+          <li>WebRTC</li>
           <li>Streaming Media</li>
-        </ul>
+        </p>
       </div>
     </div>
   </div>
@@ -110,7 +109,7 @@
   }
 
   .col1 {
-    padding-left: 0;
+    padding-left: 0px;
   }
 
   .skills-container {
@@ -151,12 +150,14 @@
     }
   }
   .check {
-    background-color: rgb(162, 231, 248);
-    color: black;
+    background-color: rgb(31, 33, 33);
+    color: white;
     transition: all 0.3s ease;
+    border: 1px solid rgb(77, 77, 77);
+    z-index: 10;
   }
 
   .check:hover {
-    background-color: rgb(115, 167, 196);
+    background-color: rgb(38, 38, 38);
   }
 </style>

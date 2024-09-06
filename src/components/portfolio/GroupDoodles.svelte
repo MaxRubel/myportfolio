@@ -16,7 +16,7 @@
   </div>
   <div class="text-container roboto-medium">
     <div class="title-row">
-      <div><h1>Group-Doodles!</h1></div>
+      <div><h1>Group-Doodles</h1></div>
       <div>
         <a
           href="https://planchad.netlify.app"
@@ -28,27 +28,13 @@
       </div>
     </div>
     <p>
-      Group-Doodles is a multiplayer drawing app. I created this app to be a
-      simple tool to whiteboard design concepts with other collaborators. It
-      uses an HTML canvas element to render mouse movements into colored pixels
-      on the dom, and there are also text boxes which are HTML elements that
-      have many custom behaviors including the ability to be dragged,
-      expanded/shrunk, colored, deleted, and automatically resized when typing.
-      Several of these actions can also be done to multiple, selected boxes.
-      There is also an undo/redo system, and an interface to save and edit color
-      palettes. The multiplayer mode allows multiple users to edit the same
-      canvas in real time. It uses peer to peer WebRTC connections, and when one
-      user makes a change, it broadcasts that change to every other user in the
-      room. I chose this method over a more reliable system (like a centralized
-      websocket server that broadcasts state down to every user), so I wouldn't
-      have to pay server costs while experimenting with the app (a busy
-      websocket server is more expensive) and potentially scale it more easily.
+      Group-Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
+      element to render brush strokes, and it has moveable textboxes. There is
+      also an undo/redo system, and a system for creating color paletes.
     </p>
     <p style="margin-top: 2rem;">
-      The front-end is written in Svelte, and there is a back-end written in
-      Python/Django. The database stores drawings and color palettes, and allows
-      registered users to share drawings. The websocket/signalling server for
-      the WebRTC negotiations is a separate api written in Go.
+      Multiplayer mode allows many users to access the same canvas in real time.
+      It uses peer-to-peer WebRTC connections to handle the sharing of data.
     </p>
     <div class="middle-text">
       <div class="col1">
@@ -57,7 +43,7 @@
           <li>Typescript!</li>
           <li>The HTML Canvas API</li>
           <li>Integrating Google-Auth with Svelte</li>
-          <li>Optimizing/throttling data transmission</li>
+          <li>Optimizing data transmission</li>
         </p>
       </div>
       <div class="col2">
@@ -69,7 +55,7 @@
           <li>Go</li>
           <li>Websockets</li>
           <li>WebRTC</li>
-          <li>JS Libraries: Perfect-Freehand, Iro-Color, Svelte-Slider</li>
+          <li>JS Libraries: Perfect-Freehand, Iro-Color</li>
         </div>
       </div>
     </div>
@@ -91,15 +77,16 @@
   h2 {
     margin: 0.5rem 0rem;
   }
-
   .check {
-    background-color: rgb(148, 209, 245);
-    color: black;
+    background-color: rgb(31, 33, 33);
+    color: white;
     transition: all 0.3s ease;
+    border: 1px solid rgb(77, 77, 77);
+    z-index: 10;
   }
 
   .check:hover {
-    background-color: rgb(115, 167, 196);
+    background-color: rgb(38, 38, 38);
   }
 
   .title-row {
@@ -117,7 +104,7 @@
 
   .middle-text {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .col1,
