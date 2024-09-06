@@ -60,6 +60,10 @@
       opacity = 0;
     }
 
+    if (windowScroll >= heightdisplay) {
+      console.log("now");
+    }
+
     opacity = Math.max(0, Math.min(opacity, 1));
   }
 

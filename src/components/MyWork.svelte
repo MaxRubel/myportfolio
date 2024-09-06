@@ -49,7 +49,6 @@
     } else if (windowScroll <= endFadeIn) {
       // Linear fade in
       opacityBG = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
-      console.log("yes, ", opacityBG);
     } else {
       opacityBG = 1; // Fully opaque after endFadeIn
     }
