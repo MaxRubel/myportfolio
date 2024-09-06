@@ -108,6 +108,8 @@
     padding: 0;
     z-index: 5;
     box-sizing: border-box;
+    /* border-bottom: 4px solid white; */
+    background-color: rgb(14, 0, 39);
   }
 
   .carousel {
