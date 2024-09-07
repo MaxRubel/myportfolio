@@ -27,7 +27,12 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button class="check">Check out the demo!</button>
+          <button
+            class="check hero-button"
+            style="background-color: transparent; height: 55px"
+          >
+            Check out the demo!
+          </button>
         </a>
       </div>
     </div>
@@ -73,7 +78,7 @@
   }
 
   .text-container {
-    padding: 0rem 4rem;
+    padding: 0rem 4.5rem;
   }
 
   h1 {
@@ -135,8 +140,18 @@
   }
 
   @media (max-width: 670px) {
+    h1 {
+      margin-bottom: 1rem;
+    }
     .middle-text {
       flex-direction: column;
+    }
+
+    .title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0px;
+      margin-bottom: 1rem;
     }
 
     .col1,

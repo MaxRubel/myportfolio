@@ -16,14 +16,19 @@
   </div>
   <div class="text-container roboto-medium">
     <div class="title-row">
-      <div><h1>Group-Doodles</h1></div>
+      <div><h1>Group Doodles</h1></div>
       <div>
         <a
           href="https://planchad.netlify.app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button class="check">Check out the demo!</button>
+          <button
+            class="check hero-button"
+            style="background-color: transparent; height: 55px"
+          >
+            Check out the demo!
+          </button>
         </a>
       </div>
     </div>
@@ -130,7 +135,7 @@
 
   .text-container {
     flex: 1;
-    padding: 0px 4rem;
+    padding: 0rem 4.5rem;
   }
 
   .responsive-video {
@@ -142,18 +147,39 @@
   }
 
   @media (max-width: 670px) {
+    h1 {
+      margin-bottom: 1rem;
+    }
     .middle-text {
       flex-direction: column;
+    }
+
+    .title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0px;
+      margin-bottom: 1rem;
     }
 
     .col1,
     .col2 {
       flex: 1 1 100%;
-      padding-left: 0px;
+      padding-left: 0;
     }
 
     .col2 {
       margin-top: -1.6rem;
     }
+  }
+  .check {
+    background-color: rgb(31, 33, 33);
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid rgb(77, 77, 77);
+    z-index: 10;
+  }
+
+  .check:hover {
+    background-color: rgb(38, 38, 38);
   }
 </style>

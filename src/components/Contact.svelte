@@ -1,5 +1,11 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { SendEmail, type EmailMessage } from "../../api/email";
+  import GithubIcon from "../graphics/GithubIcon.svelte";
+  import LinkedInIcon from "../graphics/LinkedInIcon.svelte";
+  import Youtube from "../graphics/Youtube.svelte";
+
+  export let windowScroll: number;
 
   let formValue: EmailMessage = {
     name: "",
@@ -8,6 +14,9 @@
   };
 
   let top = -130;
+  let opacity = 0;
+  let containerRef: HTMLElement;
+  let offsetTop: number;
 
   function showSuccessMessage() {
     top = 30;
@@ -16,6 +25,22 @@
     }, 3000);
   }
 
+  function handleScroll() {
+    if (!offsetTop) return;
+    const startFadeIn = offsetTop + containerRef.offsetHeight * 0.2;
+    const endFadeIn = offsetTop + containerRef.offsetHeight * 0.7;
+    if (windowScroll <= startFadeIn) {
+      opacity = 0;
+    } else if (windowScroll <= endFadeIn) {
+      // Linear fade in
+      opacity = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
+    } else {
+      windowScroll = 1;
+    }
+
+    opacity = Math.max(0, Math.min(opacity, 1));
+  }
+  $: console.log(opacity);
   function sendFormEmail(e: SubmitEvent) {
     e.preventDefault();
     SendEmail(formValue).then((response: any) => {
@@ -25,38 +50,64 @@
       }
     });
   }
+
+  onMount(() => {
+    offsetTop = containerRef.offsetTop;
+  });
+
+  $: if (windowScroll) handleScroll();
 </script>
 
 <div class="success-message" style="top: {top}px">
   Message sent successfully -- Thank you for reaching out!
 </div>
-<form class="contact-container" on:submit={sendFormEmail}>
-  <h1>Get In Touch</h1>
-  <div class="form-container">
-    <div>
-      <div>Your Name</div>
-      <input class="modern-input" type="text" bind:value={formValue.name} />
+<div
+  class="contact-page-container"
+  bind:this={containerRef}
+  style="opacity: {opacity};"
+>
+  <form id="contact-page" class="contact-form" on:submit={sendFormEmail}>
+    <h1>Get In Touch</h1>
+    <div class="form-container">
+      <div>
+        <div>Your Name</div>
+        <input class="modern-input" type="text" bind:value={formValue.name} />
+      </div>
+      <div>
+        <div>Your Email</div>
+        <input class="modern-input" type="email" bind:value={formValue.email} />
+      </div>
+      <div>
+        <div>Message</div>
+        <textarea
+          class="modern-textarea"
+          bind:value={formValue.message}
+          required
+        ></textarea>
+      </div>
+      <button type="submit"> Submit </button>
     </div>
-    <div>
-      <div>Your Email</div>
-      <input class="modern-input" type="email" bind:value={formValue.email} />
+  </form>
+  <div class="find-me-container">
+    <h1>Find Me On</h1>
+    <div class="icon row">
+      <a href="https://github.com/MaxRubel">
+        <button class="no-button"><GithubIcon /></button>
+      </a>
+      <a href="https://www.linkedin.com/in/max-rubel-a12864bb/">
+        <button class="no-button"> <LinkedInIcon /></button>
+      </a>
+      <button class="no-button"> <Youtube /></button>
     </div>
-    <div>
-      <div>Message</div>
-      <textarea class="modern-textarea" bind:value={formValue.message} required
-      ></textarea>
-    </div>
-    <button type="submit"> Submit </button>
   </div>
-</form>
+</div>
 
 <style>
   .success-message {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    background-color: red;
-    z-index: 11;
+    z-index: 16;
     font-size: 12pt;
     background-color: white;
     border: 1px solid black;
@@ -66,6 +117,18 @@
     width: 80%;
     transition: all 0.5s ease;
   }
+
+  .no-button {
+    background-color: transparent;
+    height: auto;
+    color: black;
+    width: auto;
+  }
+
+  .no-button:hover {
+    background-color: #b2d3f8;
+  }
+
   button {
     background-color: #4a90e2;
     color: white;
@@ -83,17 +146,37 @@
     flex-direction: column;
     gap: 1rem;
   }
-  .contact-container {
-    position: sticky;
-    height: 100vh;
+
+  .find-me-container {
     width: 100vw;
-    z-index: 12;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5em;
+    padding: 3rem;
     gap: 2rem;
     background-color: white;
+    box-sizing: border-box;
+    color: black;
+  }
+
+  .contact-page-container {
+    height: 100vh;
+    background-color: white;
+    position: sticky;
+    z-index: 20;
+  }
+
+  .contact-form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    padding-top: 20%;
+    gap: 2rem;
+    background-color: white;
+    box-sizing: border-box;
+    color: black;
   }
 
   .modern-input {
@@ -153,5 +236,11 @@
 
   .modern-textarea:hover {
     border-color: #bdbdbd;
+  }
+
+  @media screen and (max-width: 768px) {
+    .contact-form {
+      padding-top: 2rem;
+    }
   }
 </style>

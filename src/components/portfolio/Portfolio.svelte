@@ -9,17 +9,11 @@
   let position = 0;
   let opacity = 0;
   let containerRef: HTMLElement;
-  let heightdisplay: number;
+  let containerHeight: number;
+  let offsetTop: number;
+
   let isResizing = false;
   let resizeTimeout: any;
-
-  $: if (containerRef) {
-    heightdisplay = containerRef.offsetTop;
-  }
-
-  $: if (containerRef) {
-    heightdisplay = containerRef.offsetTop;
-  }
 
   onMount(() => {
     window.addEventListener("resize", handleResize);
@@ -30,6 +24,7 @@
 
   function handleResize() {
     isResizing = true;
+    handleScroll();
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       isResizing = false;
@@ -43,31 +38,35 @@
   function handleScroll() {
     if (!containerRef) return;
 
-    const startFadeIn = heightdisplay - heightdisplay * 0.5; //larger decimal is sooner
-    const endFadeIn = heightdisplay;
-    const startFadeOut = heightdisplay + 300;
-    const endFadeOut = heightdisplay + heightdisplay * 0.75;
+    const startFadeIn = offsetTop + 20;
+    const endFadeIn = offsetTop + containerHeight * 0.8;
+    // const startFadeOut = offsetTop + containerHeight * 0.7;
+    // const endFadeOut = offsetTop + containerHeight * 1.2;
 
     if (windowScroll <= startFadeIn) {
       opacity = 0;
     } else if (windowScroll <= endFadeIn) {
       // Linear fade in
       opacity = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
-    } else if (windowScroll <= startFadeOut) {
+    } else if (windowScroll > endFadeIn) {
       opacity = 1;
-    } else if (windowScroll <= endFadeOut) {
-      // Linear fade out
-      opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
-    } else {
-      opacity = 0;
     }
+    console.log({ opacity });
 
-    if (windowScroll >= heightdisplay - 300) {
+    // else if (windowScroll <= startFadeOut) {
+    //       opacity = 1;
+    //     } else if (windowScroll <= endFadeOut) {
+    //       // Linear fade out
+    //       opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
+
+    if (
+      windowScroll >= offsetTop - containerHeight * 0.2 &&
+      windowScroll <= offsetTop + containerHeight
+    ) {
       buttonsVisible = true;
     } else {
       buttonsVisible = false;
     }
-
     opacity = Math.max(0, Math.min(opacity, 1));
   }
 
@@ -81,7 +80,10 @@
     position += 100;
   }
 
-  $: console.log("visbuttons: ", buttonsVisible);
+  onMount(() => {
+    containerHeight = containerRef.offsetHeight;
+    offsetTop = containerRef.offsetTop;
+  });
 </script>
 
 <div class="port" bind:this={containerRef} id="portfolio-container-anchor">
@@ -108,6 +110,7 @@
     padding: 0;
     z-index: 5;
     box-sizing: border-box;
+    min-height: 100vh;
     /* border-bottom: 4px solid white; */
     background-color: rgb(14, 0, 39);
   }
@@ -132,6 +135,7 @@
     display: flex;
     justify-content: space-between;
     transition: opacity 1s ease;
+    padding: 0px 1rem;
   }
 
   .left,
@@ -152,7 +156,7 @@
   }
 
   .left {
-    left: 1em;
+    left: 100px;
   }
 
   .right {

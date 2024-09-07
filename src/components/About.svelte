@@ -48,12 +48,13 @@
   </div>
   <div class="about-right">
     <div class="about-content">
-      <h1>About Me</h1>
+      <h1 style="margin-bottom: 2rem;">About Me</h1>
       <p>
         In 2014 I graduated from Berklee College of Music and moved to Nashville
-        to pursue a career in music. I founded my own commercial studio called
-        Wild Road Recording and have worked with hundreds of diverse artists
-        including bands Rainbow Kitten Surprise, 99 Neighbors, and Rule.
+        to pursue a career in music. I founded my own commercial recording
+        studio called Wild Road Recording and have worked with hundreds of
+        diverse artists including bands Rainbow Kitten Surprise, 99 Neighbors,
+        and Ruel.
       </p>
       <p>
         My work has appeared in content by Warner Music, Sony Playstation, and
@@ -61,12 +62,12 @@
       </p>
       <p>
         In 2023, I enrolled in Nashville Software School, and over the course of
-        that year to the present, I discovered my love for coding. I have
+        that year until the present, I discovered my passion for coding. I have
         developed strong fundamental skills in Javascript/Typescript, Python,
         and Go over the course of developing several small apps, and I plan to
         continue learning by diving into C++ and lower level programming.
       </p>
-      <div style="margin-top: 3rem;">
+      <div class="check-row" style="margin-top: 3rem;">
         <button class="hero-button">Check Out My Work</button>
       </div>
     </div>
@@ -83,7 +84,8 @@
   } */
 
   .about-container {
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     z-index: 10;
     display: flex;
     box-sizing: border-box;
@@ -100,11 +102,22 @@
     box-sizing: border-box;
   }
 
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .about-right {
     width: 50%;
     box-sizing: border-box;
     padding: 5%;
     padding-left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
     /* padding-bottom: 20%; */
   }
 
@@ -112,5 +125,31 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media screen and (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      position: relative;
+    }
+
+    .about-right {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    .check-row {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+    }
+
+    .about-left {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>

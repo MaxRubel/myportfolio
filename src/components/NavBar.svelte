@@ -38,6 +38,12 @@
     scrollToElement(element, 2000);
   }
 
+  function scrollToContactPage() {
+    const element = document.getElementById("contact-page");
+    if (!element) return;
+    scrollToElement(element, 2000);
+  }
+
   $: {
     if (yValue < 120) {
       slideIn = true;
@@ -63,8 +69,9 @@
     <div>MAX RUBEL</div>
   </div>
   <div class="right-nav roboto-thin" style="font-size: 12pt;">
-    <button class="none" on:click={scrollToPortfolio}>PORTFOLIO</button>
-    <button class="none">CONNECT</button>
+    <button class="none" on:click={scrollToPortfolio}>About</button>
+    <button class="none" on:click={scrollToPortfolio}>Portfolio</button>
+    <button class="none" on:click={scrollToContactPage}>Conncect</button>
   </div>
 </div>
 

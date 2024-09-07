@@ -3,6 +3,7 @@
   import Flower from "../graphics/Flower.svelte";
 
   export let windowScroll;
+  export let isResizing;
 
   let containerHeight: number;
   let containerRef: HTMLElement;
@@ -99,28 +100,31 @@
   class="hero-wrapper roboto-medium"
   bind:this={containerRef}
   bind:clientHeight={containerHeight}
+  class:isResizing
 >
   <div class="hero-container" style="opacity: {opacity}">
     <div class="left-box">
       <div class="top-left">
-        <h1 class="hide trans roboto-bold" class:first>Hi,</h1>
-        <h1 class="hide trans roboto-bold" class:second>I'm Max.</h1>
+        <h1 class="hide trans roboto-bold" class:isResizing class:first>Hi,</h1>
+        <h1 class="hide trans roboto-bold" class:isResizing class:second>
+          I'm Max.
+        </h1>
       </div>
       <div class="top-left" style="margin-top: 2rem;">
-        <p class="hide" style="font-size: 16pt;" class:third>
+        <p class="hide" style="font-size: 16pt;" class:isResizing class:third>
           I'm a musician, audio engineer, and aspiring software developer.
         </p>
       </div>
-      <div style="margin-top: 4rem;" class="hide" class:third>
-        <button class="hero-button roboto-bold" on:click={scrollToPortfolio}
-          >Checkout My Work</button
-        >
+      <div class="hide marginTop" class:isResizing class:third>
+        <button class="hero-button roboto-bold" on:click={scrollToPortfolio}>
+          Checkout My Work
+        </button>
       </div>
       <div class="mid-left"></div>
     </div>
-    <div class="right-box hide" class:third>
+    <div class="right-box hide" class:isResizing class:third>
       <div class="opaque"></div>
-      <img class="myface" src="myface.jpeg" alt="" />
+      <img class="myFace" src="myface.jpeg" alt="" />
     </div>
   </div>
 </div>
@@ -133,21 +137,26 @@
     margin: 0.5rem 0rem;
     transition: all 3s ease;
   }
+
+  .marginTop {
+    margin-top: 4rem;
+  }
+
   .hero-wrapper {
     position: relative;
     height: 100vh;
-    width: 100%;
-    max-width: 100vw;
     overflow: hidden;
   }
 
   .hero-container {
     height: 100vh;
     width: 100%;
+    max-width: 100vw;
     display: flex;
     position: relative;
     z-index: 1;
     background-color: white;
+    box-sizing: border-box;
   }
 
   .fade {
@@ -163,6 +172,7 @@
     pointer-events: none;
     overflow: hidden;
   }
+
   .left-box {
     height: 100%;
     flex: 0 0 55%;
@@ -171,32 +181,48 @@
     flex-direction: column;
     padding: 19% 10%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
   }
 
   .right-box {
     height: 100%;
+    position: relative;
     box-sizing: border-box;
     flex: 0 0 45%;
+    padding: 5rem 1rem;
   }
 
-  .myface {
-    width: 100%; /* Change this */
-    height: 100%; /* Change this */
-    object-fit: cover; /* Change this */
+  .opaque {
+    position: absolute;
+    height: 88.1%;
+    width: 95.5%;
+    margin-top: 0;
+    margin-left: 0;
+    box-sizing: border-box;
+    display: flex;
+    background-color: #330303;
+    z-index: 1;
+    /* padding: 0rem; */
+    box-sizing: border-box;
+    background-color: #330303;
+    opacity: 0.2;
+    z-index: 1;
+  }
+
+  .myFace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    padding: inherit;
   }
 
   .hide {
     opacity: 0;
     transition: all 4s ease;
-  }
-
-  .opaque {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: #330303;
-    opacity: 0.2;
   }
 
   .first,
@@ -205,7 +231,34 @@
     opacity: 1;
   }
 
-  /* .fixed {
-    position: fixed;
-  } */
+  .isResizing {
+    transition: none !important;
+  }
+  @media screen and (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      padding: 0.5em;
+    }
+
+    .left-box,
+    .right-box {
+      flex: 0 0 50%;
+      height: 50vh;
+      width: 100%;
+    }
+
+    .left-box {
+      padding: 10% 5%;
+      justify-content: center;
+      padding-bottom: 0px;
+    }
+
+    .right-box {
+      padding-top: 0px;
+    }
+
+    .marginTop {
+      margin-top: 3rem;
+    }
+  }
 </style>
