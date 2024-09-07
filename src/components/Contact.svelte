@@ -89,7 +89,6 @@
     </div>
   </form>
   <div class="find-me-container">
-    <h1>Find Me On</h1>
     <div class="icon row">
       <a href="https://github.com/MaxRubel">
         <button class="no-button"><GithubIcon /></button>
@@ -153,6 +152,7 @@
     flex-direction: column;
     align-items: center;
     padding: 3rem;
+    padding-top: 0;
     gap: 2rem;
     background-color: white;
     box-sizing: border-box;

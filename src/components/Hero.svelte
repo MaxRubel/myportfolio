@@ -48,7 +48,6 @@
       if (timeElapsed < duration) requestAnimationFrame(animation);
     }
 
-    // Easing function
     function ease(t: number, b: number, c: number, d: number) {
       t /= d / 2;
       if (t < 1) return (c / 2) * t * t + b;
@@ -76,7 +75,6 @@
       opacity = 1;
       blueOpacity = 0;
     } else if (windowScroll <= endFadeOut) {
-      // Linear fade out for white, fade in for blue
       opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
       blueOpacity = (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
     } else {
@@ -93,9 +91,13 @@
     if (time2) clearInterval(time2);
     if (time3) clearInterval(time3);
   });
+
+  let blueHeight;
+  $: blueHeight = containerRef?.offsetHeight;
+  $: console.log("height: ", containerRef?.offsetHeight);
 </script>
 
-<div class="fade" style="opacity: {blueOpacity}"></div>
+<div class="fade" style="opacity: {blueOpacity}; height: {containerHeight}px" />
 <div
   class="hero-wrapper roboto-medium"
   bind:this={containerRef}
@@ -123,7 +125,7 @@
       <div class="mid-left"></div>
     </div>
     <div class="right-box hide" class:isResizing class:third>
-      <div class="opaque"></div>
+      <!-- <div class="opaque"></div> -->
       <img class="myFace" src="myface.jpeg" alt="" />
     </div>
   </div>
@@ -144,12 +146,12 @@
 
   .hero-wrapper {
     position: relative;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
   }
 
   .hero-container {
-    height: 100vh;
     width: 100%;
     max-width: 100vw;
     display: flex;
@@ -157,6 +159,8 @@
     z-index: 1;
     background-color: white;
     box-sizing: border-box;
+    min-height: 100vh;
+    height: auto;
   }
 
   .fade {
@@ -168,56 +172,47 @@
     background-color: rgb(0, 204, 255);
     z-index: 1;
     width: 100%;
-    height: 100vh;
     pointer-events: none;
     overflow: hidden;
   }
 
   .left-box {
-    height: 100%;
-    flex: 0 0 55%;
+    flex: 1;
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
-    padding: 19% 10%;
-    box-sizing: border-box;
-    display: flex;
     justify-content: center;
+    padding: 5% 10%;
+    box-sizing: border-box;
   }
 
   .right-box {
-    height: 100%;
+    flex: 1;
     position: relative;
     box-sizing: border-box;
-    flex: 0 0 45%;
     padding: 5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .opaque {
+  /* .opaque {
     position: absolute;
-    height: 88.1%;
-    width: 95.5%;
-    margin-top: 0;
-    margin-left: 0;
-    box-sizing: border-box;
-    display: flex;
-    background-color: #330303;
-    z-index: 1;
-    /* padding: 0rem; */
-    box-sizing: border-box;
+    top: 5rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 5rem;
     background-color: #330303;
     opacity: 0.2;
     z-index: 1;
-  }
+  } */
 
   .myFace {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+    position: relative;
     width: 100%;
+    height: auto;
     object-fit: cover;
-    padding: inherit;
+    z-index: 0;
+    min-height: 300px;
   }
 
   .hide {
@@ -234,6 +229,7 @@
   .isResizing {
     transition: none !important;
   }
+
   @media screen and (max-width: 768px) {
     .hero-container {
       flex-direction: column;
@@ -242,15 +238,12 @@
 
     .left-box,
     .right-box {
-      flex: 0 0 50%;
-      height: 50vh;
       width: 100%;
     }
 
     .left-box {
       padding: 10% 5%;
       justify-content: center;
-      padding-bottom: 0px;
     }
 
     .right-box {

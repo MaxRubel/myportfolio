@@ -32,6 +32,15 @@
     requestAnimationFrame(animation);
   }
 
+  function scrollToAbout() {
+    const element = document.getElementById("about-page-anchor");
+    if (!element) {
+      console.error("looking for about-page-anchor id for scroll");
+      return;
+    }
+    scrollToElement(element, 2000);
+  }
+
   function scrollToPortfolio() {
     const element = document.getElementById("portfolio-container-anchor");
     if (!element) return;
@@ -69,7 +78,7 @@
     <div>MAX RUBEL</div>
   </div>
   <div class="right-nav roboto-thin" style="font-size: 12pt;">
-    <button class="none" on:click={scrollToPortfolio}>About</button>
+    <button class="none" on:click={scrollToAbout}>About</button>
     <button class="none" on:click={scrollToPortfolio}>Portfolio</button>
     <button class="none" on:click={scrollToContactPage}>Conncect</button>
   </div>

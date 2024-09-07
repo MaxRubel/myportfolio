@@ -13,7 +13,7 @@
 
   function handleScrollFont() {
     if (!containerRef) return;
-    const startFadeIn = offsetTop - containerHeight * 0.5;
+    const startFadeIn = offsetTop - containerHeight * 0.8;
     const endFadeIn = offsetTop;
     const startFadeOut = offsetTop + 5;
     const endFadeOut = offsetTop + windowInnerHeight * 0.5;
@@ -109,5 +109,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    pointer-events: none;
   }
 </style>

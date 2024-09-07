@@ -5,8 +5,9 @@
 
   let containerRef: HTMLElement;
   let opacity = 0;
-  let heightdisplay = 900;
-  $: heightdisplay = containerRef?.offsetTop;
+
+  $: offsetTop = containerRef?.offsetTop;
+  $: containerHeight = containerRef?.offsetHeight;
 
   $: if (windowScroll) handleScroll();
 
@@ -14,10 +15,10 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = heightdisplay - heightdisplay * 0.75;
-    const endFadeIn = heightdisplay;
-    const startFadeOut = heightdisplay + 300;
-    const endFadeOut = heightdisplay + heightdisplay;
+    const startFadeIn = offsetTop - containerHeight * 0.7;
+    const endFadeIn = offsetTop;
+    const startFadeOut = offsetTop + containerHeight;
+    const endFadeOut = offsetTop + containerHeight + 200;
 
     if (windowScroll <= startFadeIn) {
       opacity = 0; // Fully transparent before reaching startFadeIn
@@ -35,11 +36,41 @@
 
     opacity = Math.max(0, Math.min(opacity, 1));
   }
+
+  function scrollToElement(element: HTMLElement, duration: number) {
+    const start = window.scrollY;
+    const target = element.getBoundingClientRect().top + start;
+    let startTime: number | null = null;
+
+    function animation(currentTime: number) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, start, target, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t: number, b: number, c: number, d: number) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function scrollToPortfolio() {
+    const element = document.getElementById("portfolio-container-anchor");
+    if (!element) return;
+    scrollToElement(element, 2000);
+  }
 </script>
 
 <!-- <div class="placeholder" class:visible></div> -->
 <div
   class="about-container roboto-regular"
+  id="about-page-anchor"
   bind:this={containerRef}
   style="opacity: {opacity};"
 >
@@ -48,7 +79,7 @@
   </div>
   <div class="about-right">
     <div class="about-content">
-      <h1 style="margin-bottom: 2rem;">About Me</h1>
+      <h1 style="margin-bottom: 2rem;" class="row-top">About Me</h1>
       <p>
         In 2014 I graduated from Berklee College of Music and moved to Nashville
         to pursue a career in music. I founded my own commercial recording
@@ -103,9 +134,10 @@
   }
 
   .about-content {
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .about-right {
@@ -123,7 +155,7 @@
 
   .max-image {
     width: 100%;
-    height: 100%;
+    height: 600px;
     object-fit: cover;
   }
 
@@ -131,6 +163,11 @@
     .about-container {
       flex-direction: column;
       position: relative;
+    }
+
+    .about-content {
+      gap: 1rem;
+      padding: 0px 1.5rem;
     }
 
     .about-right {
@@ -150,6 +187,19 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .max-image {
+      display: none;
+    }
+
+    .row-top {
+      width: 100%;
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    .about-left {
+      padding: 0;
     }
   }
 </style>

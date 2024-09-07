@@ -9,8 +9,12 @@
   let position = 0;
   let opacity = 0;
   let containerRef: HTMLElement;
+
   let containerHeight: number;
   let offsetTop: number;
+
+  $: offsetTop = containerRef?.offsetTop;
+  $: containerHeight = containerRef?.offsetHeight;
 
   let isResizing = false;
   let resizeTimeout: any;
@@ -38,38 +42,34 @@
   function handleScroll() {
     if (!containerRef) return;
 
-    const startFadeIn = offsetTop + 20;
-    const endFadeIn = offsetTop + containerHeight * 0.8;
-    // const startFadeOut = offsetTop + containerHeight * 0.7;
-    // const endFadeOut = offsetTop + containerHeight * 1.2;
+    const windowScroll = window.scrollY;
+    const startFadeIn = offsetTop - containerHeight * 0.5;
+    const endFadeIn = offsetTop;
+    const startFadeOut = offsetTop + containerHeight * 0.5;
+    const endFadeOut = offsetTop + containerHeight * 0.8;
 
     if (windowScroll <= startFadeIn) {
-      opacity = 0;
+      opacity = 0; // Fully transparent before reaching startFadeIn
     } else if (windowScroll <= endFadeIn) {
       // Linear fade in
       opacity = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
-    } else if (windowScroll > endFadeIn) {
-      opacity = 1;
+    } else if (windowScroll <= startFadeOut) {
+      opacity = 1; // Fully opaque between endFadeIn and startFadeOut
+    } else if (windowScroll <= endFadeOut) {
+      // Linear fade out
+      opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
+    } else {
+      opacity = 0; // Fully transparent after endFadeOut
     }
-    console.log({ opacity });
 
-    // else if (windowScroll <= startFadeOut) {
-    //       opacity = 1;
-    //     } else if (windowScroll <= endFadeOut) {
-    //       // Linear fade out
-    //       opacity = 1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
-
-    if (
-      windowScroll >= offsetTop - containerHeight * 0.2 &&
-      windowScroll <= offsetTop + containerHeight
-    ) {
+    if (opacity > 0.4) {
       buttonsVisible = true;
     } else {
       buttonsVisible = false;
     }
+
     opacity = Math.max(0, Math.min(opacity, 1));
   }
-
   function moveRight() {
     if (position === -200) return;
     position -= 100;
@@ -79,11 +79,6 @@
     if (position === 0) return;
     position += 100;
   }
-
-  onMount(() => {
-    containerHeight = containerRef.offsetHeight;
-    offsetTop = containerRef.offsetTop;
-  });
 </script>
 
 <div class="port" bind:this={containerRef} id="portfolio-container-anchor">
