@@ -57,7 +57,6 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  /* transition: border-color 0.25s; */
 }
 
 @media (prefers-color-scheme: light) {
@@ -112,9 +111,6 @@ button {
   left: 0;
 }
 
-*/
-
-/* Optional: Add a box shadow on hover for more depth */
 .hero-button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -200,17 +200,6 @@
     justify-content: center;
   }
 
-  /* .opaque {
-    position: absolute;
-    top: 5rem;
-    left: 1rem;
-    right: 1rem;
-    bottom: 5rem;
-    background-color: #330303;
-    opacity: 0.2;
-    z-index: 1;
-  } */
-
   .myFace {
     position: relative;
     width: 100%;

@@ -169,7 +169,6 @@
     background-color: rgba(17, 23, 31, 0.755);
     color: white;
     transition: all 0.3s ease;
-    /* border: 1px solid rgb(4, 51, 111); */
   }
 
   .hover:hover {

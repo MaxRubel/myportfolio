@@ -136,7 +136,6 @@
     z-index: 10;
     display: flex;
     box-sizing: border-box;
-    /* width: 100vw; */
     z-index: 2;
     top: 0;
   }
