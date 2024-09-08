@@ -114,12 +114,12 @@
       <div class="find-me-container">
         <div class="icon row">
           <a href="https://github.com/MaxRubel">
-            <button class="no-button"><GithubIcon /></button>
+            <button class="no-button" type="button"><GithubIcon /></button>
           </a>
           <a href="https://www.linkedin.com/in/max-rubel-a12864bb/">
-            <button class="no-button"> <LinkedInIcon /></button>
+            <button class="no-button" type="button"> <LinkedInIcon /></button>
           </a>
-          <button class="no-button"> <Youtube /></button>
+          <button class="no-button" type="button"> <Youtube /></button>
         </div>
       </div>
     </form>
