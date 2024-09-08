@@ -52,11 +52,12 @@
     function animation(currentTime: number) {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, start, target, duration);
+      const run = ease(timeElapsed, start, target - start, duration);
       window.scrollTo(0, run);
       if (timeElapsed < duration) requestAnimationFrame(animation);
     }
 
+    // Easing function
     function ease(t: number, b: number, c: number, d: number) {
       t /= d / 2;
       if (t < 1) return (c / 2) * t * t + b;
@@ -120,7 +121,9 @@
         continue learning by diving into C++ and lower level programming.
       </p>
       <div class="check-row" style="margin-top: 3rem;">
-        <button class="hero-button">Check Out My Work</button>
+        <button class="hero-button" on:click={scrollToPortfolio}
+          >Check Out My Work</button
+        >
       </div>
     </div>
   </div>
