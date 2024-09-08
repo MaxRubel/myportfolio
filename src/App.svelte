@@ -6,11 +6,13 @@
   import MyWork from "./components/MyWork.svelte";
   import Contact from "./components/Contact.svelte";
   import About from "./components/About.svelte";
+  import SmallNavBar from "./components/SmallNavBar.svelte";
 
   let windowScroll = window.scrollY;
   let isResizing = false;
   let resizeTimeout: any;
   let count = 1;
+  let windowWidth: number;
 
   function handleWindowScroll(e: Event) {
     windowScroll = window.scrollY;
@@ -19,6 +21,8 @@
   function handleResize() {
     isResizing = true;
     clearTimeout(resizeTimeout);
+
+    windowWidth = window.innerWidth;
 
     resizeTimeout = setTimeout(() => {
       isResizing = false;
@@ -31,7 +35,6 @@
   onMount(() => {
     window.addEventListener("scroll", handleWindowScroll);
     window.addEventListener("resize", handleResize);
-
     if (resizeTimeout) clearTimeout(resizeTimeout);
     return () => {
       window.removeEventListener("scroll", handleWindowScroll);
@@ -41,7 +44,11 @@
 </script>
 
 <main>
-  <NavBar />
+  {#if windowWidth >= 768}
+    <NavBar />
+  {:else}
+    <SmallNavBar />
+  {/if}
   <Hero {windowScroll} {isResizing} {count} />
   <About {windowScroll} {count} />
   <MyWork {windowScroll} {count} />

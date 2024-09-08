@@ -16,7 +16,7 @@
     function animation(currentTime: number) {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, start, target, duration);
+      const run = ease(timeElapsed, start, target - start, duration);
       window.scrollTo(0, run);
       if (timeElapsed < duration) requestAnimationFrame(animation);
     }

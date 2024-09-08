@@ -27,7 +27,7 @@
             class="check hero-button"
             style="background-color: transparent; height: 55px"
           >
-            Check out the demo!
+            Checkout the demo!
           </button>
         </a>
       </div>
@@ -36,9 +36,9 @@
       PlanChad is the Chad™ of to-do apps. It's made with React 18 + NextJS 12
       for the front-end, and uses Firebase as both the back-end database and
       Google-Auth provider. It uses nested drag and drop to organize projects
-      into phases and sub-tasks. There is also a hand built calendar, a
-      real-time chat made with Firebase, several custom view options, and the
-      ability to share the project with other users and add them to tasks.
+      into phases and sub-tasks. There is also a handbuilt calendar, a real-time
+      chat made with Firebase, several custom view options, and the ability to
+      share the project with other users and add them to tasks.
     </p>
 
     <div class="middle-text">
@@ -141,6 +141,7 @@
     transition: all 0.3s ease;
     border: 1px solid rgb(77, 77, 77);
     z-index: 10;
+    padding: 0 1rem;
   }
 
   .check:hover {

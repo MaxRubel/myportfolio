@@ -31,12 +31,12 @@
             class="check hero-button"
             style="background-color: transparent; height: 55px"
           >
-            Check out the demo!
+            Checkout the demo!
           </button>
         </a>
       </div>
     </div>
-    <p>Zoot is a multi-room video conferencing app.</p>
+    <p>Zoot is a multi-room video conferencing app for the browser.</p>
     <p style="margin-top: 2rem;">
       It uses Svelte for the front-end, and a Go websocket server for the
       back-end. The server stores pointers to all of the active users' websocket
@@ -62,6 +62,7 @@
           <li>Websockets</li>
           <li>WebRTC</li>
           <li>Streaming Media</li>
+          <li>Docker</li>
         </p>
       </div>
     </div>
@@ -170,6 +171,7 @@
     transition: all 0.3s ease;
     border: 1px solid rgb(77, 77, 77);
     z-index: 10;
+    padding: 0 1rem;
   }
 
   .check:hover {

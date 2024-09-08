@@ -22,9 +22,9 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = offsetTop - containerHeight * 0.6;
+    const startFadeIn = offsetTop - containerHeight * 0.7;
     const endFadeIn = offsetTop - containerHeight * 0.2;
-    const startFadeOut = offsetTop + containerHeight;
+    const startFadeOut = offsetTop + containerHeight * 0.8;
     const endFadeOut = offsetTop + containerHeight + 200;
 
     if (windowScroll <= startFadeIn) {
@@ -81,11 +81,9 @@
     } else {
       position = "sticky";
     }
-    console.log(windowWidth);
     if (windowWidth < 510) {
       position = "";
     }
-    console.log({ position });
   }
 </script>
 
@@ -107,7 +105,7 @@
         In 2014, I graduated from Berklee College of Music and moved to
         Nashville to pursue a career in music. I founded my own commercial
         recording studio called Wild Road Recording and have worked with
-        hundreds of diverse artists including bands Rainbow Kitten Surprise, 99
+        hundreds of diverse artists including Rainbow Kitten Surprise, 99
         Neighbors, and Ruel.
       </p>
       <p>
@@ -176,13 +174,18 @@
     .about-container {
       flex-direction: column;
       position: relative;
-      /* height: 100vh; */
-      min-height: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .about-content {
       gap: 1rem;
       padding: 0px 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .about-right {

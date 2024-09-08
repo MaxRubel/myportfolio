@@ -27,7 +27,7 @@
             class="check hero-button"
             style="background-color: transparent; height: 55px"
           >
-            Check out the demo!
+            Checkout the demo!
           </button>
         </a>
       </div>
@@ -88,6 +88,7 @@
     transition: all 0.3s ease;
     border: 1px solid rgb(77, 77, 77);
     z-index: 10;
+    padding: 0 1rem;
   }
 
   .check:hover {
