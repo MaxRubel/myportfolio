@@ -8,7 +8,6 @@ export type EmailMessage = {
 const endpoint = import.meta.env.VITE_MAIL_API
 
 export function SendEmail(message: EmailMessage) {
-  console.log({ endpoint })
   return new Promise((resolve, reject) => {
     fetch(`${endpoint}/sendmessage`, {
       method: 'POST',
