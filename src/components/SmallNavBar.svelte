@@ -117,10 +117,6 @@
 </div>
 
 <style>
-  a {
-    color: black;
-  }
-
   .small-nav-container {
     top: 20px;
     left: 20px;
