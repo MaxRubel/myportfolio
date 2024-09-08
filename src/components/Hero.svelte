@@ -119,7 +119,11 @@
         </p>
       </div>
       <div class="hide marginTop" class:isResizing class:third>
-        <button class="hero-button roboto-bold" on:click={scrollToPortfolio}>
+        <button
+          class="hero-button roboto-bold"
+          style="z-index: 11;"
+          on:click={scrollToPortfolio}
+        >
           Checkout My Work
         </button>
       </div>
