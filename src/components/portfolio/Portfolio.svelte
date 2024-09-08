@@ -51,9 +51,9 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = offsetTop - containerHeight * 0.5;
+    const startFadeIn = offsetTop - containerHeight * 0.7;
     const endFadeIn = offsetTop;
-    const startFadeOut = offsetTop + containerHeight * 0.5;
+    const startFadeOut = offsetTop + containerHeight * 0.7;
     const endFadeOut = offsetTop + containerHeight * 0.8;
 
     if (windowScroll <= startFadeIn) {
@@ -114,7 +114,6 @@
     z-index: 5;
     box-sizing: border-box;
     min-height: 100vh;
-    /* border-bottom: 4px solid white; */
     background-color: rgb(14, 0, 39);
   }
 

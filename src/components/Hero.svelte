@@ -96,8 +96,6 @@
     if (time2) clearInterval(time2);
     if (time3) clearInterval(time3);
   });
-
-  $: console.log("height: ", containerRef?.offsetHeight);
 </script>
 
 <div class="fade" style="opacity: {blueOpacity}; height: {containerHeight}px" />
@@ -115,7 +113,7 @@
           I'm Max.
         </h1>
       </div>
-      <div class="top-left" style="margin-top: 2rem;">
+      <div class="top-left margin-par">
         <p class="hide" style="font-size: 16pt;" class:isResizing class:third>
           I'm a musician, audio engineer, and aspiring software developer.
         </p>
@@ -152,6 +150,10 @@
     min-height: 100vh;
     height: auto;
     width: 100%;
+  }
+
+  .margin-par {
+    margin-top: 2rem;
   }
 
   .hero-container {
@@ -251,10 +253,19 @@
 
     .right-box {
       padding-top: 0px;
+      height: 100px;
+    }
+
+    .myFace {
+      min-height: 100px;
+    }
+
+    .margin-par {
+      margin-top: 1rem;
     }
 
     .marginTop {
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
   }
 </style>

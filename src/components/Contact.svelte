@@ -47,7 +47,7 @@
   function handleScroll() {
     if (!offsetTop) return;
     const startFadeIn = offsetTop - containerHeight * 0.8;
-    const endFadeIn = offsetTop;
+    const endFadeIn = offsetTop - containerHeight * 0.2;
     if (windowScroll <= startFadeIn) {
       opacity = 0;
       blueOpacity = 1;
@@ -111,18 +111,18 @@
         </div>
         <button type="submit"> Submit </button>
       </div>
-    </form>
-    <div class="find-me-container">
-      <div class="icon row">
-        <a href="https://github.com/MaxRubel">
-          <button class="no-button"><GithubIcon /></button>
-        </a>
-        <a href="https://www.linkedin.com/in/max-rubel-a12864bb/">
-          <button class="no-button"> <LinkedInIcon /></button>
-        </a>
-        <button class="no-button"> <Youtube /></button>
+      <div class="find-me-container">
+        <div class="icon row">
+          <a href="https://github.com/MaxRubel">
+            <button class="no-button"><GithubIcon /></button>
+          </a>
+          <a href="https://www.linkedin.com/in/max-rubel-a12864bb/">
+            <button class="no-button"> <LinkedInIcon /></button>
+          </a>
+          <button class="no-button"> <Youtube /></button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
@@ -133,6 +133,7 @@
     top: 0;
     z-index: 20;
     overflow: hidden;
+    background-color: rgb(255, 255, 255);
   }
 
   .fade {
@@ -207,7 +208,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
     padding-top: 0;
     gap: 2rem;
     box-sizing: border-box;
