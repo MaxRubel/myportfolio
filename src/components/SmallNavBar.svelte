@@ -122,7 +122,7 @@
     left: 20px;
     position: fixed;
     z-index: 24;
-    transition: all 5s ease;
+    transition: all 4s ease;
   }
 
   .nav-button {
