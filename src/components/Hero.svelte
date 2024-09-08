@@ -236,7 +236,7 @@
   @media screen and (max-width: 768px) {
     .hero-container {
       flex-direction: column;
-      padding: 0.5em;
+      padding: 2em;
     }
 
     .left-box,

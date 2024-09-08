@@ -8,10 +8,12 @@
   let opacity = 0;
   let offsetTop: number;
   let containerHeight: number;
+  let windowWidth: number;
 
   $: if (count && containerRef) {
     offsetTop = containerRef.offsetTop;
     containerHeight = containerRef.offsetHeight;
+    windowWidth = window.innerWidth;
   }
 
   $: if (windowScroll || count) handleScroll();
@@ -70,6 +72,21 @@
     if (!element) return;
     scrollToElement(element, 2000);
   }
+
+  let position = "";
+
+  $: {
+    if (windowScroll > offsetTop + containerHeight) {
+      position = "";
+    } else {
+      position = "sticky";
+    }
+    console.log(windowWidth);
+    if (windowWidth < 510) {
+      position = "";
+    }
+    console.log({ position });
+  }
 </script>
 
 <!-- <div class="placeholder" class:visible></div> -->
@@ -78,7 +95,7 @@
   id="about-page-anchor"
   bind:this={containerRef}
   style="opacity: {opacity};
-    position: {windowScroll > offsetTop + containerHeight ? '' : 'sticky'}"
+    position: {position}"
 >
   <div class="about-left centered">
     <img class="max-image" src="studioMax.jpg" alt="" />
@@ -158,7 +175,7 @@
   @media screen and (max-width: 768px) {
     .about-container {
       flex-direction: column;
-      /* position: relative; */
+      position: relative;
       /* height: 100vh; */
       min-height: 0;
     }

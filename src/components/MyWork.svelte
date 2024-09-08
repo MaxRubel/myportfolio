@@ -56,17 +56,6 @@
       opacityBG = 0;
     }
 
-    console.table([
-      {
-        startFadeIn,
-        windowScroll,
-        endFadeIn,
-        opacityBG,
-        windowInnerHeight,
-        hide,
-      },
-    ]);
-
     opacityBG = Math.max(0, Math.min(opacityBG, 1));
   }
 
