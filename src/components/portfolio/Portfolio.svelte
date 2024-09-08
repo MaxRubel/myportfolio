@@ -5,6 +5,7 @@
   import GroupDoodles from "./GroupDoodles.svelte";
 
   export let windowScroll: number;
+  export let count;
 
   let position = 0;
   let opacity = 0;
@@ -12,6 +13,13 @@
 
   let containerHeight: number;
   let offsetTop: number;
+
+  $: {
+    if (containerRef && count) {
+      offsetTop = containerRef.offsetTop;
+      containerHeight = containerRef.offsetHeight;
+    }
+  }
 
   $: offsetTop = containerRef?.offsetTop;
   $: containerHeight = containerRef?.offsetHeight;

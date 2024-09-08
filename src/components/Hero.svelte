@@ -4,9 +4,11 @@
 
   export let windowScroll;
   export let isResizing;
+  export let count;
 
   let containerHeight: number;
   let containerRef: HTMLElement;
+  let blueHeight;
 
   let first = false;
   let second = false;
@@ -18,6 +20,9 @@
 
   let opacity = 1;
   let blueOpacity = 0;
+
+  $: if (count) containerHeight = containerRef?.offsetHeight;
+  $: if (count) blueHeight = containerRef?.offsetHeight;
 
   onMount(() => {
     time1 = setTimeout(() => {
@@ -33,7 +38,7 @@
     }, 1400);
   });
 
-  $: if (windowScroll) handleScroll();
+  $: if (windowScroll || count) handleScroll();
 
   function scrollToElement(element: HTMLElement, duration: number) {
     const start = window.scrollY;
@@ -92,8 +97,6 @@
     if (time3) clearInterval(time3);
   });
 
-  let blueHeight;
-  $: blueHeight = containerRef?.offsetHeight;
   $: console.log("height: ", containerRef?.offsetHeight);
 </script>
 
