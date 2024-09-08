@@ -2,7 +2,7 @@
   <div class="video-background-layer">
     <div class="video-container">
       <video
-        src="painttsdemo.mp4"
+        src="paint-new-multi.mp4"
         class="responsive-video"
         autoplay
         muted
@@ -35,7 +35,7 @@
     <p>
       Group-Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
       element to render brush strokes, and it has moveable textboxes. There is
-      also an undo/redo system, and a system for creating color paletes.
+      also an undo/redo system, and a system for creating color palettes.
     </p>
     <p style="margin-top: 2rem;">
       Multiplayer mode allows many users to access the same canvas in real time.

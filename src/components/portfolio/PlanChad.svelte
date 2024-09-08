@@ -35,26 +35,12 @@
     <p>
       PlanChad is the Chad™ of to-do apps. It's made with React 18 + NextJS 12
       for the front-end, and uses Firebase as both the back-end database and
-      Google-Auth provider. My inspiration for this project was how I personally
-      like to visualize planning projects that have a large scope: I like to
-      separate them into phases and assign tasks to each phase. This app is
-      packed with features including two layers of drag and drop, a handmade
-      calendar, the ability to share projects and assign collaborators to tasks,
-      a websocket based chat system made with Firebase, and several custom view
-      options.
+      Google-Auth provider. It uses nested drag and drop to organize projects
+      into phases and sub-tasks. There is also a hand built calendar, a
+      real-time chat made with Firebase, several custom view options, and the
+      ability to share the project with other users and add them to tasks.
     </p>
-    <p style="margin-top: 2rem;">
-      This app served as my front-end capstone project for a class I'm finishing
-      at the Nashville Software School, and I learned a lot during its creation.
-      For example, in trying to optimize how often I posted to the database, I
-      ended up writing a caching system that performs all CRUD actions on the
-      client, and then the user syncs their data with the database when they
-      save their work. This was very complicated, and I learned shortly after
-      that this could be more easily accomplished with a library like React
-      Query. Also, writing the calendar was particularly challenging, but I
-      learned a lot about how to manipulate data in creative, visuals ways on
-      the dom.
-    </p>
+
     <div class="middle-text">
       <div class="col1">
         <h2>What I Learned</h2>

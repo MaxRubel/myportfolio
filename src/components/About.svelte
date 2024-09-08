@@ -15,7 +15,7 @@
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = offsetTop - containerHeight * 0.7;
+    const startFadeIn = offsetTop - containerHeight * 0.9;
     const endFadeIn = offsetTop;
     const startFadeOut = offsetTop + containerHeight;
     const endFadeOut = offsetTop + containerHeight + 200;
@@ -81,11 +81,11 @@
     <div class="about-content">
       <h1 style="margin-bottom: 2rem;" class="row-top">About Me</h1>
       <p>
-        In 2014 I graduated from Berklee College of Music and moved to Nashville
-        to pursue a career in music. I founded my own commercial recording
-        studio called Wild Road Recording and have worked with hundreds of
-        diverse artists including bands Rainbow Kitten Surprise, 99 Neighbors,
-        and Ruel.
+        In 2014, I graduated from Berklee College of Music and moved to
+        Nashville to pursue a career in music. I founded my own commercial
+        recording studio called Wild Road Recording and have worked with
+        hundreds of diverse artists including bands Rainbow Kitten Surprise, 99
+        Neighbors, and Ruel.
       </p>
       <p>
         My work has appeared in content by Warner Music, Sony Playstation, and
@@ -106,14 +106,6 @@
 </div>
 
 <style>
-  /* .placeholder {
-    height: 100vh;
-    width: 100%;
-    background-color: rgb(0, 204, 255);
-    opacity: 0;
-    transition: all 2s ease;
-  } */
-
   .about-container {
     min-height: 100vh;
     height: 100%;
@@ -148,9 +140,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
-    height: 100%;
-    /* padding-bottom: 20%; */
   }
 
   .max-image {
@@ -163,6 +154,8 @@
     .about-container {
       flex-direction: column;
       position: relative;
+      height: 100%;
+      min-height: 0;
     }
 
     .about-content {
