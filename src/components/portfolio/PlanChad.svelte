@@ -132,7 +132,6 @@
     margin: -1rem 0px;
     transform-origin: center center;
     object-fit: fill;
-    /* object-position: center center; */
   }
 
   .check {
