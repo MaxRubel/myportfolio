@@ -6,6 +6,7 @@
   import Youtube from "../graphics/Youtube.svelte";
 
   export let windowScroll: number;
+  export let count;
 
   let formValue: EmailMessage = {
     name: "",
@@ -16,7 +17,24 @@
   let top = -130;
   let opacity = 0;
   let containerRef: HTMLElement;
+  let containerHeight: number;
   let offsetTop: number;
+
+  $: {
+    if (containerRef && count) {
+      offsetTop = containerRef.offsetTop;
+      containerHeight = containerRef.offsetHeight;
+    }
+  }
+
+  function updateOffsets() {
+    offsetTop = containerRef.offsetTop;
+    containerHeight = containerRef.offsetHeight;
+  }
+
+  $: if (count && containerRef) {
+    updateOffsets();
+  }
 
   function showSuccessMessage() {
     top = 30;
@@ -27,8 +45,8 @@
 
   function handleScroll() {
     if (!offsetTop) return;
-    const startFadeIn = offsetTop + containerRef.offsetHeight * 0.2;
-    const endFadeIn = offsetTop + containerRef.offsetHeight * 0.7;
+    const startFadeIn = offsetTop - containerHeight * 0.9;
+    const endFadeIn = offsetTop;
     if (windowScroll <= startFadeIn) {
       opacity = 0;
     } else if (windowScroll <= endFadeIn) {
@@ -37,10 +55,9 @@
     } else {
       windowScroll = 1;
     }
-
     opacity = Math.max(0, Math.min(opacity, 1));
+    // opacity = 1;
   }
-  $: console.log(opacity);
   function sendFormEmail(e: SubmitEvent) {
     e.preventDefault();
     SendEmail(formValue).then((response: any) => {
@@ -55,7 +72,7 @@
     offsetTop = containerRef.offsetTop;
   });
 
-  $: if (windowScroll) handleScroll();
+  $: if (windowScroll || count) handleScroll();
 </script>
 
 <div class="success-message" style="top: {top}px">
@@ -106,7 +123,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 16;
+    z-index: 20;
     font-size: 12pt;
     background-color: white;
     border: 1px solid black;

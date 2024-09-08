@@ -2,21 +2,26 @@
   import { onMount } from "svelte";
 
   export let windowScroll: number;
+  export let count;
 
   let containerRef: HTMLElement;
   let opacity = 0;
+  let offsetTop: number;
+  let containerHeight: number;
 
-  $: offsetTop = containerRef?.offsetTop;
-  $: containerHeight = containerRef?.offsetHeight;
+  $: if (count && containerRef) {
+    offsetTop = containerRef.offsetTop;
+    containerHeight = containerRef.offsetHeight;
+  }
 
-  $: if (windowScroll) handleScroll();
+  $: if (windowScroll || count) handleScroll();
 
   function handleScroll() {
     if (!containerRef) return;
 
     const windowScroll = window.scrollY;
-    const startFadeIn = offsetTop - containerHeight * 0.9;
-    const endFadeIn = offsetTop;
+    const startFadeIn = offsetTop - containerHeight * 0.6;
+    const endFadeIn = offsetTop - containerHeight * 0.2;
     const startFadeOut = offsetTop + containerHeight;
     const endFadeOut = offsetTop + containerHeight + 200;
 
@@ -72,7 +77,8 @@
   class="about-container roboto-regular"
   id="about-page-anchor"
   bind:this={containerRef}
-  style="opacity: {opacity};"
+  style="opacity: {opacity};
+    position: {windowScroll > offsetTop + containerHeight ? '' : 'sticky'}"
 >
   <div class="about-left centered">
     <img class="max-image" src="studioMax.jpg" alt="" />
@@ -114,7 +120,6 @@
     box-sizing: border-box;
     /* width: 100vw; */
     z-index: 2;
-    position: sticky;
     top: 0;
   }
 
@@ -153,8 +158,8 @@
   @media screen and (max-width: 768px) {
     .about-container {
       flex-direction: column;
-      position: relative;
-      height: 100%;
+      /* position: relative; */
+      /* height: 100vh; */
       min-height: 0;
     }
 

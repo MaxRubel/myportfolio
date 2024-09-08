@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
   export let windowScroll: number;
+  export let count;
 
   let containerRef: HTMLElement;
   let containerHeight: number;
@@ -11,12 +10,18 @@
   let opacityFont = 0;
   let offsetTop = 0;
 
+  $: {
+    if (containerRef && count) {
+      offsetTop = containerRef.offsetTop;
+    }
+  }
+
   function handleScrollFont() {
     if (!containerRef) return;
-    const startFadeIn = offsetTop - containerHeight * 0.8;
+    const startFadeIn = offsetTop - windowInnerHeight * 0.2;
     const endFadeIn = offsetTop;
-    const startFadeOut = offsetTop + 5;
-    const endFadeOut = offsetTop + windowInnerHeight * 0.5;
+    const startFadeOut = offsetTop + windowInnerHeight * 0.2;
+    const endFadeOut = offsetTop + windowInnerHeight * 0.4;
 
     if (windowScroll <= startFadeIn) {
       opacityFont = 0;
@@ -24,11 +29,10 @@
       opacityFont = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
     } else if (windowScroll <= startFadeOut) {
       opacityFont = 1;
-      console.log("here");
     } else if (windowScroll <= endFadeOut) {
       opacityFont =
         1 - (windowScroll - startFadeOut) / (endFadeOut - startFadeOut);
-    } else {
+    } else if (windowScroll > endFadeOut) {
       opacityFont = 0;
     }
 
@@ -38,62 +42,56 @@
   function handleScrollBG() {
     if (!containerRef) return;
 
-    const windowScroll = window.scrollY;
-    const startFadeIn = offsetTop - containerHeight * 0.5;
+    const startFadeIn = offsetTop - windowInnerHeight * 0.5;
     const endFadeIn = offsetTop;
+    const hide = endFadeIn + windowInnerHeight;
 
     if (windowScroll <= startFadeIn) {
       opacityBG = 0;
     } else if (windowScroll <= endFadeIn) {
       opacityBG = (windowScroll - startFadeIn) / (endFadeIn - startFadeIn);
+    } else if (windowScroll > endFadeIn && windowScroll <= hide) {
+      opacityBG = 1;
+    } else if (windowScroll > hide) {
+      opacityBG = 0;
     }
+
+    console.table([
+      {
+        startFadeIn,
+        windowScroll,
+        endFadeIn,
+        opacityBG,
+        windowInnerHeight,
+        hide,
+      },
+    ]);
 
     opacityBG = Math.max(0, Math.min(opacityBG, 1));
   }
 
   $: {
-    if (windowScroll !== undefined || windowInnerHeight || offsetTop) {
+    if (windowScroll || windowInnerHeight || offsetTop || count) {
       handleScrollFont();
       handleScrollBG();
+      windowInnerHeight = window.innerHeight;
     }
   }
-
-  function handleResize() {
-    windowInnerHeight = window.innerHeight;
-    handleScrollFont();
-    handleScrollBG();
-  }
-
-  onMount(() => {
-    handleResize();
-
-    offsetTop = containerRef.offsetTop;
-    containerHeight = containerRef.offsetHeight;
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
 </script>
-
-<svelte:window
-  on:resize={() => {
-    if (containerRef) {
-      containerRef.style.height = `${windowInnerHeight}px`;
-      handleResize();
-    }
-  }}
-/>
 
 <div
   class="transition prata-regular centered"
   bind:this={containerRef}
   bind:clientHeight={containerHeight}
-  style="opacity: {opacityBG}; height: {windowInnerHeight}px;"
+  style="opacity: {opacityBG}; 
+  height: {windowInnerHeight}px;
+  position: {windowScroll > offsetTop + containerHeight ? '' : 'sticky'}
+  "
 >
   <div
-    style="font-size: 72pt; opacity:{opacityFont}; background-color: transparent"
+    style="font-size: 72pt;
+    opacity:{opacityFont};
+    background-color: transparent"
   >
     My Work
   </div>
@@ -101,7 +99,6 @@
 
 <style>
   .transition {
-    position: sticky;
     top: 0;
     z-index: 4;
     background-color: rgb(14, 0, 39);

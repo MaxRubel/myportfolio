@@ -5,12 +5,12 @@
   import Portfolio from "./components/portfolio/Portfolio.svelte";
   import MyWork from "./components/MyWork.svelte";
   import Contact from "./components/Contact.svelte";
-  import BlackSlot from "./components/BlackSlot.svelte";
   import About from "./components/About.svelte";
 
   let windowScroll = window.scrollY;
   let isResizing = false;
   let resizeTimeout: any;
+  let count = 1;
 
   function handleWindowScroll(e: Event) {
     windowScroll = window.scrollY;
@@ -24,7 +24,8 @@
       isResizing = false;
     }, 150) as unknown as number;
 
-    // windowScroll = window.scrollY;
+    count = count + 1;
+    windowScroll = window.scrollY;
   }
 
   onMount(() => {
@@ -41,9 +42,9 @@
 
 <main>
   <NavBar />
-  <Hero {windowScroll} {isResizing} />
-  <About {windowScroll} />
-  <MyWork {windowScroll} />
-  <Portfolio {windowScroll} />
-  <Contact {windowScroll} />
+  <Hero {windowScroll} {isResizing} {count} />
+  <About {windowScroll} {count} />
+  <MyWork {windowScroll} {count} />
+  <Portfolio {windowScroll} {count} />
+  <Contact {windowScroll} {count} />
 </main>
