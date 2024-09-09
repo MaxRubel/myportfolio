@@ -115,7 +115,7 @@
       </div>
       <div class="top-left margin-par">
         <p class="hide" style="font-size: 16pt;" class:isResizing class:third>
-          I'm a musician, audio engineer, and aspiring software developer.
+          I'm a musician, audio engineer, and software developer.
         </p>
       </div>
       <div class="hide marginTop" class:isResizing class:third>
