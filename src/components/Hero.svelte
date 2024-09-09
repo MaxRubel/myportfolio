@@ -98,12 +98,16 @@
   });
 </script>
 
-<div class="fade" style="opacity: {blueOpacity}; height: {containerHeight}px" />
+<div
+  class="fade"
+  style="opacity: {blueOpacity}; height: {containerHeight}px; z-index: 1"
+/>
 <div
   class="hero-wrapper roboto-medium"
   bind:this={containerRef}
   bind:clientHeight={containerHeight}
   class:isResizing
+  style="z-index: 10;"
 >
   <div class="hero-container" style="opacity: {opacity}">
     <div class="left-box">
@@ -119,11 +123,7 @@
         </p>
       </div>
       <div class="hide marginTop" class:isResizing class:third>
-        <button
-          class="hero-button roboto-bold"
-          style="z-index: 11;"
-          on:click={scrollToPortfolio}
-        >
+        <button class="hero-button roboto-bold" on:click={scrollToPortfolio}>
           Checkout My Work
         </button>
       </div>
@@ -160,6 +160,11 @@
     margin-top: 2rem;
   }
 
+  .hero-button {
+    position: relative;
+    z-index: 900;
+  }
+
   .hero-container {
     width: 100%;
     max-width: 100vw;
@@ -193,6 +198,7 @@
     justify-content: center;
     padding: 5% 10%;
     box-sizing: border-box;
+    z-index: 2;
   }
 
   .right-box {
@@ -203,6 +209,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
   }
 
   .myFace {
@@ -233,11 +240,17 @@
     .hero-container {
       flex-direction: column;
       padding: 2em;
+      min-height: auto;
+      height: auto;
     }
 
     .left-box,
     .right-box {
       width: 100%;
+    }
+
+    .left-box {
+      padding: 10% 5% 20% 5%; /* Increased bottom padding */
     }
 
     .left-box {
@@ -260,6 +273,15 @@
 
     .marginTop {
       margin-top: 2rem;
+    }
+
+    .hero-button {
+      position: relative;
+      z-index: 300;
+    }
+
+    .fade {
+      z-index: 1;
     }
   }
 </style>

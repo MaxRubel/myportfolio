@@ -89,8 +89,6 @@
     if (position === 0) return;
     position += 100;
   }
-
-  $: console.log({ position });
 </script>
 
 <div class="port" bind:this={containerRef} id="portfolio-container-anchor">
