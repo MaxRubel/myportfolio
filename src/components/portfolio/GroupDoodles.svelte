@@ -19,7 +19,7 @@
       <div><h1>Group Doodles</h1></div>
     </div>
     <p>
-      Group-Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
+      Group Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
       element to render brush strokes, and it has moveable textboxes. There is
       also an undo/redo system, a system for creating color palettes, and a
       back-end database written in Python/Django where users can store their
