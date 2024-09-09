@@ -130,6 +130,7 @@
     border: 2px solid black;
     transition: all 0.4s ease;
     height: 44px;
+    color: black;
   }
 
   .nav-button:hover {
