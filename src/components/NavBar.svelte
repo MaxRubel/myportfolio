@@ -123,7 +123,7 @@
   }
 
   .none {
-    color: black;
+    color: white;
     background-color: transparent;
     transition: all 0.4s ease;
     padding: 0px;
