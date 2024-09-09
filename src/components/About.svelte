@@ -121,9 +121,9 @@
         continue learning by diving into C++ and lower level programming.
       </p>
       <div class="check-row" style="margin-top: 3rem;">
-        <button class="hero-button" on:click={scrollToPortfolio}
-          >Check Out My Work</button
-        >
+        <button class="hero-button" on:click={scrollToPortfolio}>
+          Check Out My Work
+        </button>
       </div>
     </div>
   </div>
@@ -138,6 +138,8 @@
     box-sizing: border-box;
     z-index: 2;
     top: 0;
+    background-color: white;
+    color: black;
   }
 
   .about-left {
