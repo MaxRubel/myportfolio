@@ -142,6 +142,10 @@
     color: black;
   }
 
+  h1 {
+    font-size: 2.2rem;
+  }
+
   .about-left {
     width: 50%;
     padding: 5%;
@@ -222,10 +226,6 @@
 
     .about-left {
       padding: 0;
-    }
-
-    h1 {
-      font-size: 3rem;
     }
   }
 </style>
