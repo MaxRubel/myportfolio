@@ -142,7 +142,7 @@
           {/if}
           {#if fail}
             <div style="font-size: 14pt;">
-              Oopsies! Something went wrong :(. Sorry!
+              Oopsies! Something went wrong :( Sorry!
             </div>
           {/if}
         </div>
