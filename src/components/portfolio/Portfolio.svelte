@@ -3,6 +3,8 @@
   import PlanChad from "./PlanChad.svelte";
   import Zoot from "./Zoot.svelte";
   import GroupDoodles from "./GroupDoodles.svelte";
+  import LeftArrow from "../../graphics/LeftArrow.svelte";
+  import RightArrow from "../../graphics/RightArrow.svelte";
 
   export let windowScroll: number;
   export let count;
@@ -87,6 +89,8 @@
     if (position === 0) return;
     position += 100;
   }
+
+  $: console.log({ position });
 </script>
 
 <div class="port" bind:this={containerRef} id="portfolio-container-anchor">
@@ -101,8 +105,20 @@
     <GroupDoodles />
   </div>
   <div class="fixed" style:opacity={buttonsVisible ? 1 : 0}>
-    <button class="left check hover" on:click={moveLeft}>L</button>
-    <button class="right check hover" on:click={moveRight}>R</button>
+    <button
+      class="left check hover"
+      on:click={moveLeft}
+      style="opacity: {position === 0 ? '0' : '1'};"
+    >
+      <LeftArrow />
+    </button>
+    <button
+      class="right check hover"
+      on:click={moveRight}
+      style="opacity: {position === -200 ? '0' : '1'};"
+    >
+      <RightArrow />
+    </button>
   </div>
 </div>
 
@@ -142,36 +158,30 @@
 
   .left,
   .right {
-    z-index: 1;
-    background-color: black;
+    z-index: 18;
     color: white;
     height: 70px;
     border: none;
     cursor: pointer;
-    background-color: transparent;
+    /* background-color: transparent; */
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid white;
     transition: all 0.3 ease;
-    width: 1rem;
-  }
-
-  .left {
-    left: 100px;
-  }
-
-  .right {
-    right: 1em;
+    color: white;
+    padding: 0;
+    width: 2.5rem;
+    height: 90px;
   }
 
   .check {
-    background-color: rgba(17, 23, 31, 0.755);
+    background-color: rgba(18, 17, 31, 0.755);
     color: white;
     transition: all 0.3s ease;
   }
 
   .hover:hover {
-    background-color: rgb(10, 35, 57);
+    background-color: rgb(10, 11, 57);
   }
 </style>
