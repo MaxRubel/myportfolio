@@ -316,5 +316,9 @@
     .contact-form {
       padding-top: 2rem;
     }
+
+    h1 {
+      font-size: 3rem;
+    }
   }
 </style>
