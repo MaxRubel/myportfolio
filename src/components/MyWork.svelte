@@ -44,7 +44,7 @@
 
     const startFadeIn = offsetTop - windowInnerHeight * 0.5;
     const endFadeIn = offsetTop;
-    const hide = endFadeIn + windowInnerHeight;
+    const hide = offsetTop + windowInnerHeight + offsetTop;
 
     if (windowScroll <= startFadeIn) {
       opacityBG = 0;

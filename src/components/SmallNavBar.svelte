@@ -119,7 +119,7 @@
 <style>
   .small-nav-container {
     top: 20px;
-    left: 20px;
+    left: 3.5rem;
     position: absolute;
     z-index: 24;
     transition: all 3s ease;
