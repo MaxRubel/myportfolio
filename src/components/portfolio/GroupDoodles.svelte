@@ -21,7 +21,9 @@
     <p>
       Group-Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
       element to render brush strokes, and it has moveable textboxes. There is
-      also an undo/redo system, and a system for creating color palettes.
+      also an undo/redo system, a system for creating color palettes, and a
+      back-end database written in Python/Django where users can store their
+      projects and color palettes.
     </p>
     <p style="margin-top: 2rem;">
       Multiplayer mode allows many users to access the same canvas in real time.
