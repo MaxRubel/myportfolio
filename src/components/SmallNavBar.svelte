@@ -157,6 +157,7 @@
     width: 150px;
     display: flex;
     transition: all 0.2s ease;
+    color: black;
   }
 
   .clear-button:hover {
