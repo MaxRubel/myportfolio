@@ -223,5 +223,9 @@
     .about-left {
       padding: 0;
     }
+
+    h1 {
+      font-size: 3rem;
+    }
   }
 </style>
