@@ -4,6 +4,7 @@
   import GithubIcon from "../graphics/GithubIcon.svelte";
   import LinkedInIcon from "../graphics/LinkedInIcon.svelte";
   import Youtube from "../graphics/Youtube.svelte";
+  import { BarLoader } from "svelte-loading-spinners";
 
   export let windowScroll: number;
   export let count;
@@ -14,12 +15,15 @@
     message: "",
   };
 
-  let top = -130;
   let opacity = 0;
   let containerRef: HTMLElement;
   let containerHeight: number;
   let offsetTop: number;
   let blueOpacity = 0;
+  let submitButton: HTMLElement;
+  let isSending = false;
+  let sucess = false;
+  let fail = false;
 
   $: {
     if (containerRef && count) {
@@ -38,16 +42,25 @@
   }
 
   function showSuccessMessage() {
-    top = 30;
+    sucess = true;
     setTimeout(() => {
-      top = -130;
-    }, 3000);
+      sucess = false;
+    }, 4000);
+  }
+
+  function showErrorMessage() {
+    fail = true;
+    setTimeout(() => {
+      fail = false;
+    }, 4000);
   }
 
   function handleScroll() {
     if (!offsetTop) return;
+
     const startFadeIn = offsetTop - containerHeight * 0.8;
     const endFadeIn = offsetTop - containerHeight * 0.2;
+
     if (windowScroll <= startFadeIn) {
       opacity = 0;
       blueOpacity = 1;
@@ -63,14 +76,25 @@
     blueOpacity = Math.max(0, Math.min(blueOpacity, 1));
   }
 
-  function sendFormEmail(e: SubmitEvent) {
+  async function sendFormEmail(e: SubmitEvent) {
     e.preventDefault();
-    SendEmail(formValue).then((response: any) => {
+
+    try {
+      isSending = true;
+      const response: any = await SendEmail(formValue);
+
       if (response.status === "Email sent successfully") {
         showSuccessMessage();
         formValue = { name: "", email: "", message: "" };
+      } else {
+        throw new Error("Email sending failed");
       }
-    });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      showErrorMessage();
+    } finally {
+      isSending = false;
+    }
   }
 
   onMount(() => {
@@ -80,9 +104,6 @@
   $: if (windowScroll || count) handleScroll();
 </script>
 
-<div class="success-message" style="top: {top}px">
-  Message sent successfully -- Thank you for reaching out!
-</div>
 <div class="contact-page-container" bind:this={containerRef}>
   <div class="fade" style="opacity: {blueOpacity};" />
   <div class="content" style="opacity: {opacity};">
@@ -109,7 +130,22 @@
             required
           ></textarea>
         </div>
-        <button type="submit"> Submit </button>
+        <button type="submit" bind:this={submitButton}> Submit </button>
+        <div class="loading-bar">
+          {#if isSending}
+            <BarLoader size={100} color="#4a90e2" unit="px" duration="1s" />
+          {/if}
+          {#if sucess}
+            <div style="font-size: 14pt;">
+              Thanks for reaching out! Message sent successfully!
+            </div>
+          {/if}
+          {#if fail}
+            <div style="font-size: 14pt;">
+              Oopsies! Something went wrong :(. Sorry!
+            </div>
+          {/if}
+        </div>
       </div>
       <div class="find-me-container">
         <div class="icon row">
@@ -159,19 +195,10 @@
     justify-content: center;
   }
 
-  .success-message {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
-    font-size: 12pt;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: center;
-    width: 80%;
-    transition: all 0.5s ease;
+  .loading-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .no-button {
