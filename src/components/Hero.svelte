@@ -170,6 +170,7 @@
     box-sizing: border-box;
     min-height: 100vh;
     height: auto;
+    color: black;
   }
 
   .fade {
