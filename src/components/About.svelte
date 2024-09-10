@@ -109,11 +109,11 @@
         hundreds of diverse artists including Rainbow Kitten Surprise, 99
         Neighbors, and Ruel.
       </p>
-      <p>
+      <!-- <p>
         My work has appeared in content by Warner Music, Sony Playstation, and
         Mercedes-Benz.
-      </p>
-      <p>
+      </p> -->
+      <p style="margin-top: 1rem ;">
         In 2023, I enrolled in Nashville Software School, and over the course of
         that year until the present, I discovered my passion for coding. I have
         developed strong fundamental skills in Javascript/Typescript, Python,
@@ -140,6 +140,11 @@
     top: 0;
     background-color: white;
     color: black;
+  }
+
+  .hero-button {
+    height: 60px;
+    padding: 1rem;
   }
 
   h1 {

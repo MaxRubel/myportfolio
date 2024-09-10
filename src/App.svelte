@@ -35,6 +35,7 @@
   onMount(() => {
     window.addEventListener("scroll", handleWindowScroll);
     window.addEventListener("resize", handleResize);
+    windowWidth = window.innerWidth;
     if (resizeTimeout) clearTimeout(resizeTimeout);
     return () => {
       window.removeEventListener("scroll", handleWindowScroll);

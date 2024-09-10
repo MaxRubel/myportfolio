@@ -42,7 +42,7 @@
   function handleScrollBG() {
     if (!containerRef) return;
 
-    const startFadeIn = offsetTop - windowInnerHeight * 0.5;
+    const startFadeIn = offsetTop - windowInnerHeight * 0.8;
     const endFadeIn = offsetTop;
     const hide = offsetTop + windowInnerHeight + offsetTop;
 
