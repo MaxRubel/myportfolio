@@ -118,7 +118,7 @@
         </h1>
       </div>
       <div class="top-left margin-par">
-        <p class="hide" style="font-size: 16pt;" class:isResizing class:third>
+        <p class="hide sub-header" class:isResizing class:third>
           I'm a musician, audio engineer, and software developer.
         </p>
       </div>
@@ -201,6 +201,10 @@
     z-index: 2;
   }
 
+  .sub-header {
+    font-size: 16pt;
+  }
+
   .right-box {
     flex: 1;
     position: relative;
@@ -242,6 +246,20 @@
       padding: 2em;
       min-height: auto;
       height: auto;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sub-header {
+      font-size: 14pt;
+    }
+
+    .hero-button {
+      font-size: 12pt;
+      /* height: 44px; */
     }
 
     .left-box,
@@ -261,6 +279,7 @@
     .right-box {
       padding-top: 0px;
       height: 100px;
+      overflow: hidden;
     }
 
     .myFace {
@@ -278,6 +297,10 @@
     .hero-button {
       position: relative;
       z-index: 300;
+    }
+
+    h1 {
+      font-size: 24pt;
     }
 
     .fade {

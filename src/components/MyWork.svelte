@@ -78,7 +78,8 @@
   "
 >
   <div
-    style="font-size: 72pt;
+    style="font-size: 72pt; 
+    text-align: center;
     opacity:{opacityFont};
     background-color: transparent"
   >

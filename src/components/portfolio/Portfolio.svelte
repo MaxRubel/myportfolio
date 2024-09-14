@@ -182,4 +182,11 @@
   .hover:hover {
     background-color: rgb(10, 11, 57);
   }
+
+  @media (max-width: 670px) {
+    .check {
+      width: 24px;
+      height: 200px;
+    }
+  }
 </style>

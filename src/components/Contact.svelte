@@ -315,10 +315,13 @@
   @media screen and (max-width: 768px) {
     .contact-form {
       padding-top: 2rem;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
   }
 </style>

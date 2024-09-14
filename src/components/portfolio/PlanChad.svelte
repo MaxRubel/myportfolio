@@ -156,7 +156,7 @@
 
     .title-row {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0px;
       margin-bottom: 1rem;
     }
@@ -181,5 +181,10 @@
 
   .check:hover {
     background-color: rgb(38, 38, 38);
+  }
+
+  .text-container {
+    flex: 1;
+    padding: 0rem 3rem;
   }
 </style>

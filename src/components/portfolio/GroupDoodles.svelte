@@ -17,6 +17,20 @@
   <div class="text-container roboto-medium">
     <div class="title-row">
       <div><h1>Group Doodles</h1></div>
+      <div>
+        <a
+          href="https://paint-ts.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button
+            class="check hero-button"
+            style="background-color: transparent; height: 55px"
+          >
+            Checkout the demo!
+          </button>
+        </a>
+      </div>
     </div>
     <p>
       Group Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
@@ -70,7 +84,7 @@
   h2 {
     margin: 0.5rem 0rem;
   }
-  /* .check {
+  .check {
     background-color: rgb(31, 33, 33);
     color: white;
     transition: all 0.3s ease;
@@ -81,7 +95,7 @@
 
   .check:hover {
     background-color: rgb(38, 38, 38);
-  } */
+  }
 
   .title-row {
     position: relative;
@@ -144,9 +158,14 @@
 
     .title-row {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0px;
       margin-bottom: 1rem;
+    }
+
+    .text-container {
+      flex: 1;
+      padding: 0rem 3rem;
     }
 
     .col1,

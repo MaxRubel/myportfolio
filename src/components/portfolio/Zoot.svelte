@@ -150,7 +150,7 @@
 
     .title-row {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0px;
       margin-bottom: 1rem;
     }
@@ -163,6 +163,11 @@
 
     .col2 {
       margin-top: -1.6rem;
+    }
+
+    .text-container {
+      flex: 1;
+      padding: 0rem 3rem;
     }
   }
   .check {
