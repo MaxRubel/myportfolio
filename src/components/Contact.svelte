@@ -155,7 +155,9 @@
           <a href="https://www.linkedin.com/in/max-rubel-a12864bb/">
             <button class="no-button" type="button"> <LinkedInIcon /></button>
           </a>
-          <button class="no-button" type="button"> <Youtube /></button>
+          <a href="https://www.youtube.com/@MaxMakesApps/videos">
+            <button class="no-button" type="button"> <Youtube /></button>
+          </a>
         </div>
       </div>
     </form>
