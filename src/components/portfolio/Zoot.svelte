@@ -167,7 +167,7 @@
 
     .text-container {
       flex: 1;
-      padding: 0rem 3rem;
+      padding: 0rem 5rem;
     }
   }
   .check {

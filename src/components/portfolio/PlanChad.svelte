@@ -35,26 +35,20 @@
     <p>
       PlanChad is the Chad™ of to-do apps. It's made with React 18 + NextJS 12
       for the front-end, and uses Firebase as both the back-end database and
-      Google-Auth provider. It uses nested drag and drop to organize a project
-      into sections. There is also a handbuilt calendar, a real-time chat made
-      with Firebase, several custom view options, and the ability to share the
-      project with other users and add them to tasks.
+      Google-Auth provider.
     </p>
-
     <div class="middle-text">
       <div class="col1">
-        <h2>What I Learned</h2>
-
-        <li>Full-stack CRUD</li>
-        <li>How to use data stores (Zustand)</li>
-        <li>I wrote a calendar!</li>
-        <li>How to optimize React to avoid rerenders</li>
-        <li>Use React Query!</li>
+        <h2>Features</h2>
+        <li>Nested drag and drop</li>
+        <li>Handmade calendar</li>
+        <li>Real-time chat with Firebase</li>
+        <li>Customizable UI</li>
+        <li>A share/collaborate system</li>
       </div>
       <div class="col2">
         <h2>Skills I Used</h2>
         <div class="skills-container">
-          <li>Javascript</li>
           <li>React + NextJS</li>
           <li>Firebase</li>
           <li>Zustand Stores</li>
@@ -63,6 +57,17 @@
           <li>Caching</li>
         </div>
       </div>
+    </div>
+    <div class="middle-text">
+      <div class="col1" style="padding-top: 0px;">
+        <h2>What I Learned</h2>
+        <li>Full-stack CRUD</li>
+        <li>How to use data stores (Zustand)</li>
+        <li>I wrote a calendar!</li>
+        <li>How to optimize React to avoid rerenders</li>
+        <li>Use React Query!</li>
+      </div>
+      <div class="col2" />
     </div>
   </div>
 </div>
@@ -124,7 +129,8 @@
 
   .text-container {
     flex: 1;
-    padding: 0rem 4.5rem;
+    padding: 0rem 5rem;
+    padding-bottom: 1rem;
   }
 
   .responsive-video {
@@ -185,6 +191,7 @@
 
   .text-container {
     flex: 1;
-    padding: 0rem 3rem;
+    padding: 0rem 5rem;
+    padding-bottom: 1rem;
   }
 </style>
