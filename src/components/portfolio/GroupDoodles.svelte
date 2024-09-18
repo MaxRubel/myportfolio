@@ -33,24 +33,19 @@
       </div>
     </div>
     <p>
-      Group Doodles is a multiplayer whiteboarding tool. It uses an HTML canvas
-      element to render brush strokes, and it has moveable textboxes. There is
-      also an undo/redo system, a system for creating color palettes, and a
-      back-end database written in Python/Django where users can store their
-      projects and color palettes.
-    </p>
-    <p style="margin-top: 2rem;">
-      Multiplayer mode allows many users to access the same canvas in real time.
-      It uses peer-to-peer WebRTC connections to handle the sharing of data.
+      Group Doodles is a collaborative whiteboarding tool. It uses WebRTC to
+      facilitate a real time/multiplayer experience on the canvas.
     </p>
     <div class="middle-text">
       <div class="col1">
-        <h2>What I Learned</h2>
+        <h2>Features</h2>
         <p>
-          <li>Typescript!</li>
-          <li>The HTML Canvas API</li>
-          <li>Integrating Google-Auth with Svelte</li>
-          <li>Optimizing data transmission</li>
+          <li>HTML Canvas Drawing</li>
+          <li>Moveable Text Boxes</li>
+          <li>Undo/Redo System</li>
+          <li>Color Palettes</li>
+          <li>A Database for storing drawings and color palettes</li>
+          <li>A multiplayer/collaboration feature</li>
         </p>
       </div>
       <div class="col2">
@@ -65,6 +60,18 @@
           <li>JS Libraries: Perfect-Freehand, Iro-Color</li>
         </div>
       </div>
+    </div>
+    <div class="middle-text" style="margin-top: 0px;">
+      <div class="col1" style="padding-top: 0px;">
+        <h2>What I Learned</h2>
+        <p>
+          <li>Typescript!</li>
+          <li>The HTML Canvas API</li>
+          <li>Integrating Google-Auth with Svelte</li>
+          <li>Optimizing data transmission</li>
+        </p>
+      </div>
+      <div class="col2"></div>
     </div>
   </div>
 </div>
@@ -161,11 +168,12 @@
       align-items: center;
       gap: 0px;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     .text-container {
       flex: 1;
-      padding: 0rem 3rem;
+      padding: 0rem 5rem;
     }
 
     .col1,
