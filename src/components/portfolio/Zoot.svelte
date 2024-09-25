@@ -36,7 +36,7 @@
         </a>
       </div>
     </div>
-    <p>Zoot is a multi-room video conferencing app for the browser.</p>
+    <p>Zoot is a multi-room video conferencing app for a web browser.</p>
     <p style="margin-top: 2rem;">
       It uses Svelte for the front-end, and connects to a websocket server (GO).
       The server stores all of the active users' websocket connections organized
