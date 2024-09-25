@@ -2,7 +2,7 @@
   import { projectViewing } from "../../../stores/ProjectViewingStore";
 </script>
 
-<div class="zoot-container">
+<section class="zoot-container">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -38,11 +38,12 @@
     </div>
     <p>Zoot is a multi-room video conferencing app for the browser.</p>
     <p style="margin-top: 2rem;">
-      It uses Svelte for the front-end, and a Go websocket server for the
-      back-end. The server stores pointers to all of the active users' websocket
-      connections. When a new user joins the room, they negotiate a WebRTC
-      connection with each other user via these pointers. Zoot also uses several
-      browser APIs that handle camera and audio streaming.
+      It uses Svelte for the front-end, and connects to a websocket server (GO).
+      The server stores all of the active users' websocket connections organized
+      by conference room. When a new user joins the room, they negotiate a peer
+      to peer connection (WebRTC) with the other users via these websocket
+      connections. Zoot also uses browser APIs to handle camera and audio
+      streaming.
     </p>
     <div class="middle-text">
       <div class="col1">
@@ -67,7 +68,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <style>
   .zoot-container {

@@ -104,7 +104,7 @@
   $: if (windowScroll || count) handleScroll();
 </script>
 
-<div class="contact-page-container" bind:this={containerRef}>
+<section class="contact-page-container" bind:this={containerRef}>
   <div class="fade" style="opacity: {blueOpacity};" />
   <div class="content" style="opacity: {opacity};">
     <form id="contact-page" class="contact-form" on:submit={sendFormEmail}>
@@ -162,7 +162,7 @@
       </div>
     </form>
   </div>
-</div>
+</section>
 
 <style>
   .contact-page-container {

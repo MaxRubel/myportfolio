@@ -89,7 +89,7 @@
 </script>
 
 <!-- <div class="placeholder" class:visible></div> -->
-<div
+<section
   class="about-container roboto-regular"
   id="about-page-anchor"
   bind:this={containerRef}
@@ -127,7 +127,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <style>
   .about-container {
@@ -220,7 +220,7 @@
       align-items: center;
     }
     .max-image {
-      display: none;
+      opacity: 0;
     }
 
     .row-top {

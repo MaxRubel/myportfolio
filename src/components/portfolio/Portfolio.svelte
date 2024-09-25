@@ -91,7 +91,7 @@
   }
 </script>
 
-<div class="port" bind:this={containerRef} id="portfolio-container-anchor">
+<section class="port" bind:this={containerRef} id="portfolio-container-anchor">
   <div
     class="carousel"
     class:no-transition={isResizing}
@@ -118,7 +118,7 @@
       <RightArrow />
     </button>
   </div>
-</div>
+</section>
 
 <style>
   .port {

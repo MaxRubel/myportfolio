@@ -1,4 +1,4 @@
-<div class="plan-chad-container">
+<section class="plan-chad-container">
   <div class="video-background-layer">
     <div class="video-container">
       <video
@@ -70,7 +70,7 @@
       <div class="col2" />
     </div>
   </div>
-</div>
+</section>
 
 <style>
   .plan-chad-container {

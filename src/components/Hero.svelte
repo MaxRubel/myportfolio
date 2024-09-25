@@ -98,7 +98,7 @@
   });
 </script>
 
-<div
+<section
   class="fade"
   style="opacity: {blueOpacity}; height: {containerHeight}px; z-index: 1"
 />
