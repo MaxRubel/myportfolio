@@ -34,8 +34,8 @@
     </div>
     <p>
       PlanChad is the Chad™ of to-do apps. It's made with React 18 + NextJS 12
-      for the front-end, and uses Firebase as both the back-end database and
-      Google-Auth provider.
+      for the front-end, and uses Firebase as the database, websocket server,
+      and auth provider.
     </p>
     <div class="middle-text">
       <div class="col1">
