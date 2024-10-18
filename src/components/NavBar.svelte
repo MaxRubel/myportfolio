@@ -80,7 +80,7 @@
   <div class="right-nav roboto-thin" style="font-size: 12pt;">
     <button class="none" on:click={scrollToAbout}>About</button>
     <button class="none" on:click={scrollToPortfolio}>Portfolio</button>
-    <button class="none" on:click={scrollToContactPage}>Conncect</button>
+    <button class="none" on:click={scrollToContactPage}>Connect</button>
   </div>
 </div>
 
